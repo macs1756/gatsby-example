@@ -1,14 +1,13 @@
-const path = require("path")
-const { default: Home } = require("./src/themes/home")
+const path = require("path");
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
   createPage({
     path: "/",
-    component: path.resolve(`./src/themes/home.js`),
+    component: path.resolve("./src/themes/home/index.jsx"),
     context: {
       pagePath: '/',
     },
-  })
-}
+  });
+};

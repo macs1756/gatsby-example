@@ -1,6 +1,10 @@
 module.exports = {
   plugins: [
     {
+      resolve: `gatsby-plugin-postcss`,
+      options: {},
+    },
+    {
       resolve: 'gatsby-plugin-schema-snapshot',
       options: {
         path: 'schema.gql',
