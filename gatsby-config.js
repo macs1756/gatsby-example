@@ -5,7 +5,7 @@ module.exports = {
       options: {
         path: 'schema.gql',
         withFieldTypes: true,
-        update: false,
+        update: true,
       },
     },
     {

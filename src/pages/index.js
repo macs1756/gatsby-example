@@ -3,7 +3,6 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 const HomeData = () => {
   
- 
   return (
     <div>
       Working
