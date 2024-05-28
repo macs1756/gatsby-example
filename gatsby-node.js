@@ -1,5 +1,5 @@
 const path = require("path");
-const { getReviews } = require("./src/graphQL/queries");
+
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
@@ -12,24 +12,29 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     },
   });
 
-  if (getReviews.errors) {
-    reporter.panicOnBuild(`Error while running GraphQL query.`)
-    return
-  }
-
+  const { data: reviewsData } = await graphql`
+  query {
+    allStrapiReview(limit: 10) {
+      nodes {
+        slug
+        name
+      }
+    }
+  }`;
+  
+ 
   console.log(getReviews);
 
   const reviewTemplate = path.resolve(`src/themes/review/index.jsx`)
-  // result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-  //   const path = node.frontmatter.path
-  //   createPage({
-  //     path,
-  //     component: reviewTemplate,
-  //     context: {
-  //       pagePath: path,
-  //     },
-  //   })
-  // })
+  reviewsData.allStrapiReview.nodes.forEach(({ node }) => {
+    createPage({
+      path: node.slug,
+      component: reviewTemplate,
+      context: {
+        name: node.name,
+      },
+    })
+  })
 
 
 
