@@ -1,4 +1,5 @@
 const path = require("path");
+const { getReviews } = require("./src/graphQL/queries");
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
@@ -10,4 +11,26 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       pagePath: '/',
     },
   });
+
+  if (getReviews.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`)
+    return
+  }
+
+  console.log(getReviews);
+
+  const reviewTemplate = path.resolve(`src/themes/review/index.jsx`)
+  // result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+  //   const path = node.frontmatter.path
+  //   createPage({
+  //     path,
+  //     component: reviewTemplate,
+  //     context: {
+  //       pagePath: path,
+  //     },
+  //   })
+  // })
+
+
+
 };
