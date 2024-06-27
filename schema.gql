@@ -1,4 +1,4 @@
-### Type definitions saved at 2024-05-28T06:28:59.877Z ###
+### Type definitions saved at 2024-06-27T05:56:42.444Z ###
 
 enum RemoteFileFit {
   COVER
@@ -376,26 +376,769 @@ type STRAPI__MEDIAFormatsLarge {
   height: Int
 }
 
+type STRAPI__COMPONENT_SIDEBAR_LEARN_LINKS implements Node @dontInfer {
+  strapi_component: String
+  header: String
+  links: [STRAPI__COMPONENT_REUSABLE_LEARN_LINK_ITEM] @link(by: "id", from: "links___NODE")
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_REUSABLE_LEARN_LINK_ITEM implements Node @dontInfer {
+  label: String
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_SIDEBAR_BEST_LINKS implements Node @dontInfer {
+  strapi_component: String
+  header: String
+  links: [STRAPI__COMPONENT_REUSABLE_BEST_OF_LINK_ITEM] @link(by: "id", from: "links___NODE")
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_REUSABLE_BEST_OF_LINK_ITEM implements Node @dontInfer {
+  label: String
+  strapi_id: Int
+  best_of: STRAPI_BEST_OF @link(by: "id", from: "best_of___NODE")
+}
+
+type STRAPI_BEST_OF implements Node @derivedTypes @dontInfer {
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  publishedAt: Date @dateformat
+  subtitle: String
+  slug: String
+  excerpt: String
+  readtime: Int
+  isArchive: Boolean
+  publishAt: Date @dateformat
+  locale: String
+  whyTrust: STRAPI_BEST_OFWhyTrust
+  best_of_category: [STRAPI_BEST_OF_CATEGORY] @link(by: "id", from: "best_of_category___NODE")
+  content: [STRAPI__COMPONENT_CONTENT_CK_EDITORSTRAPI__COMPONENT_CONTENT_GALLERYSTRAPI__COMPONENT_CONTENT_HIGHLIGHTSTRAPI__COMPONENT_CONTENT_IMAGESTRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETSTRAPI__COMPONENT_CONTENT_PROS_CONSUnion] @link(by: "id", from: "content___NODE")
+  authors: [STRAPI_USER] @link(by: "id", from: "authors___NODE")
+  seo: STRAPI__COMPONENT_SHARED_SEO @link(by: "id", from: "seo___NODE")
+  image: STRAPI__MEDIA @link(by: "id", from: "image___NODE")
+  strapi_id: Int
+}
+
+type STRAPI_BEST_OFWhyTrust @derivedTypes {
+  id: Int
+  label: String
+  content: String
+  link: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  first_item_label: String
+  second_item_label: String
+  productTooltip: String
+  productTooltipLink: String
+  avatar: STRAPI_BEST_OFWhyTrustAvatar
+  first_item_image: STRAPI_BEST_OFWhyTrustFirst_item_image
+  second_item_image: STRAPI_BEST_OFWhyTrustSecond_item_image
+}
+
+type STRAPI_BEST_OFWhyTrustAvatar {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI_BEST_OFWhyTrustFirst_item_image {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI_BEST_OFWhyTrustSecond_item_image {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI_BEST_OF_CATEGORY implements Node @derivedTypes @dontInfer {
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  slug: String
+  introText: STRAPI_BEST_OF_CATEGORYIntroText
+  subTitle: String
+  introTitle: String
+  hideFromBestOfPage: Boolean
+  isLocked: Boolean
+  locale: String
+  localizations: STRAPI_BEST_OF_CATEGORYLocalizations
+  editorProduct: STRAPI_PRODUCT @link(by: "id", from: "editorProduct___NODE")
+  image: STRAPI__MEDIA @link(by: "id", from: "image___NODE")
+  introImage: STRAPI__MEDIA @link(by: "id", from: "introImage___NODE")
+  seo: STRAPI__COMPONENT_SHARED_SEO @link(by: "id", from: "seo___NODE")
+  best_ofs: [STRAPI_BEST_OF] @link(by: "id", from: "best_ofs___NODE")
+  strapi_id: Int
+}
+
+type STRAPI_BEST_OF_CATEGORYIntroText {
+  data: STRAPI_BEST_OF_CATEGORY_INTROTEXT_TEXTNODE @link(by: "id", from: "data___NODE")
+}
+
+type STRAPI_BEST_OF_CATEGORY_INTROTEXT_TEXTNODE implements Node @dontInfer {
+  introText: String
+}
+
+type STRAPI_BEST_OF_CATEGORYLocalizations @derivedTypes {
+  data: [STRAPI_BEST_OF_CATEGORYLocalizationsData]
+}
+
+type STRAPI_BEST_OF_CATEGORYLocalizationsData @derivedTypes {
+  id: Int
+  attributes: STRAPI_BEST_OF_CATEGORYLocalizationsDataAttributes
+}
+
+type STRAPI_BEST_OF_CATEGORYLocalizationsDataAttributes {
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  slug: String
+  introText: String
+  subTitle: String
+  introTitle: String
+  hideFromBestOfPage: Boolean
+  isLocked: Boolean
+  locale: String
+}
+
+type STRAPI_PRODUCT implements Node @derivedTypes @dontInfer {
+  name: String
+  description: String
+  rating: Float
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  link: String
+  model: String
+  editorsChoice: Boolean
+  couponCode: String
+  couponText: String
+  price: Float
+  affiliateMenuEditor: String
+  affiliateLevel2Editor: String
+  affiliateTop3: String
+  substances_select: String
+  product_types_select: String
+  slug: String
+  isLocked: Boolean
+  affiliateLink: String
+  locale: String
+  allProductTypes: [STRAPI_PRODUCTAllProductTypes]
+  image: STRAPI__MEDIA @link(by: "id", from: "image___NODE")
+  alternativeImage: STRAPI__MEDIA @link(by: "id", from: "alternativeImage___NODE")
+  gallery: [STRAPI__MEDIA] @link(by: "id", from: "gallery___NODE")
+  pros: [STRAPI__COMPONENT_REUSABLE_LIST_ITEM] @link(by: "id", from: "pros___NODE")
+  cons: [STRAPI__COMPONENT_REUSABLE_LIST_ITEM] @link(by: "id", from: "cons___NODE")
+  kitContent: [STRAPI__COMPONENT_REUSABLE_LIST_ITEM] @link(by: "id", from: "kitContent___NODE")
+  specification: [STRAPI__COMPONENT_REUSABLE_SPECIFICATION] @link(by: "id", from: "specification___NODE")
+  brand: [STRAPI_BRAND] @link(by: "id", from: "brand___NODE")
+  substances: [STRAPI_SUBSTANCE] @link(by: "id", from: "substances___NODE")
+  product_types: [STRAPI_PRODUCT_TYPE] @link(by: "id", from: "product_types___NODE")
+  strapi_id: Int
+  review: STRAPI_REVIEW @link(by: "id", from: "review___NODE")
+}
+
+type STRAPI_PRODUCTAllProductTypes @derivedTypes {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  children: [STRAPI_PRODUCTAllProductTypesChildren]
+}
+
+type STRAPI_PRODUCTAllProductTypesChildren @derivedTypes {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  parent: STRAPI_PRODUCTAllProductTypesChildrenParent
+}
+
+type STRAPI_PRODUCTAllProductTypesChildrenParent {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_REUSABLE_LIST_ITEM implements Node @dontInfer {
+  text: String
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_REUSABLE_SPECIFICATION implements Node @dontInfer {
+  value: String
+  strapi_id: Int
+  label: STRAPI_SPECIFICATION_LABEL @link(by: "id", from: "label___NODE")
+}
+
+type STRAPI_SPECIFICATION_LABEL implements Node @dontInfer {
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  locale: String
+  strapi_id: Int
+}
+
+type STRAPI_BRAND implements Node @dontInfer {
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  strapi_id: Int
+}
+
+type STRAPI_SUBSTANCE implements Node @derivedTypes @dontInfer {
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  strapi_parent: STRAPI_SUBSTANCEStrapi_parent
+  strapi_id: Int
+}
+
+type STRAPI_SUBSTANCEStrapi_parent @derivedTypes {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  strapi_parent: STRAPI_SUBSTANCEStrapi_parentStrapi_parent
+}
+
+type STRAPI_SUBSTANCEStrapi_parentStrapi_parent {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI_PRODUCT_TYPE implements Node @derivedTypes @dontInfer {
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  strapi_parent: STRAPI_PRODUCT_TYPEStrapi_parent
+  strapi_id: Int
+}
+
+type STRAPI_PRODUCT_TYPEStrapi_parent {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI_REVIEW implements Node @derivedTypes @dontInfer {
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  publishedAt: Date @dateformat
+  slug: String
+  excerpt: String
+  readtime: Int
+  isArchive: Boolean
+  publishAt: Date @dateformat
+  locale: String
+  whyTrust: STRAPI_REVIEWWhyTrust
+  content: [STRAPI__COMPONENT_CONTENT_BUTTONSTRAPI__COMPONENT_CONTENT_CK_EDITORSTRAPI__COMPONENT_CONTENT_COUPONSTRAPI__COMPONENT_CONTENT_DROPDOWNSTRAPI__COMPONENT_CONTENT_GALLERYSTRAPI__COMPONENT_CONTENT_HIGHLIGHTSTRAPI__COMPONENT_CONTENT_IMAGESTRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETSTRAPI__COMPONENT_CONTENT_PROS_CONSSTRAPI__COMPONENT_CONTENT_QUOTEUnion] @link(by: "id", from: "content___NODE")
+  authors: [STRAPI_USER] @link(by: "id", from: "authors___NODE")
+  seo: STRAPI__COMPONENT_SHARED_SEO @link(by: "id", from: "seo___NODE")
+  image: STRAPI__MEDIA @link(by: "id", from: "image___NODE")
+  buyNowProducts: [STRAPI_PRODUCT] @link(by: "id", from: "buyNowProducts___NODE")
+  strapi_id: Int
+}
+
+type STRAPI_REVIEWWhyTrust @derivedTypes {
+  id: Int
+  label: String
+  content: String
+  link: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  first_item_label: String
+  second_item_label: String
+  productTooltip: String
+  productTooltipLink: String
+  avatar: STRAPI_REVIEWWhyTrustAvatar
+  first_item_image: STRAPI_REVIEWWhyTrustFirst_item_image
+  second_item_image: STRAPI_REVIEWWhyTrustSecond_item_image
+}
+
+type STRAPI_REVIEWWhyTrustAvatar {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI_REVIEWWhyTrustFirst_item_image {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI_REVIEWWhyTrustSecond_item_image {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+union STRAPI__COMPONENT_CONTENT_BUTTONSTRAPI__COMPONENT_CONTENT_CK_EDITORSTRAPI__COMPONENT_CONTENT_COUPONSTRAPI__COMPONENT_CONTENT_DROPDOWNSTRAPI__COMPONENT_CONTENT_GALLERYSTRAPI__COMPONENT_CONTENT_HIGHLIGHTSTRAPI__COMPONENT_CONTENT_IMAGESTRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETSTRAPI__COMPONENT_CONTENT_PROS_CONSSTRAPI__COMPONENT_CONTENT_QUOTEUnion = STRAPI__COMPONENT_CONTENT_BUTTON | STRAPI__COMPONENT_CONTENT_CK_EDITOR | STRAPI__COMPONENT_CONTENT_COUPON | STRAPI__COMPONENT_CONTENT_DROPDOWN | STRAPI__COMPONENT_CONTENT_GALLERY | STRAPI__COMPONENT_CONTENT_HIGHLIGHT | STRAPI__COMPONENT_CONTENT_IMAGE | STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGET | STRAPI__COMPONENT_CONTENT_PROS_CONS | STRAPI__COMPONENT_CONTENT_QUOTE
+
+type STRAPI_USER implements Node @derivedTypes @dontInfer {
+  username: String
+  email: String
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  favoriteFlavours: String
+  expertiseIn: String
+  fullName: String
+  description: STRAPI_USERDescription
+  twitter: String
+  linkedIn: String
+  vapingSince: Date @dateformat
+  postCount: Int
+  authorPosition: String
+  role: STRAPI_USERRole
+  avatar: STRAPI_USERAvatar
+  products: [STRAPI_USERProducts]
+  strapi_id: Int
+}
+
+type STRAPI_USERDescription {
+  data: String
+}
+
+type STRAPI_USERRole {
+  id: Int
+  name: String
+  description: String
+  type: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI_USERAvatar @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: STRAPI_USERAvatarFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI_USERAvatarFormats @derivedTypes {
+  thumbnail: STRAPI_USERAvatarFormatsThumbnail
+  large: STRAPI_USERAvatarFormatsLarge
+  small: STRAPI_USERAvatarFormatsSmall
+  medium: STRAPI_USERAvatarFormatsMedium
+}
+
+type STRAPI_USERAvatarFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_USERAvatarFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_USERAvatarFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_USERAvatarFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_USERProducts @derivedTypes {
+  id: Int
+  name: String
+  description: String
+  rating: Float
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  link: String
+  model: String
+  editorsChoice: Boolean
+  couponCode: String
+  couponText: String
+  price: Float
+  affiliateMenuEditor: String
+  affiliateLevel2Editor: String
+  affiliateTop3: String
+  substances_select: String
+  product_types_select: String
+  slug: String
+  isLocked: Boolean
+  affiliateLink: String
+  locale: String
+  image: STRAPI_USERProductsImage
+  alternativeImage: STRAPI_USERProductsAlternativeImage
+  gallery: [STRAPI_USERProductsGallery]
+  pros: [STRAPI_USERProductsPros]
+  cons: [STRAPI_USERProductsCons]
+  kitContent: [STRAPI_USERProductsKitContent]
+  specification: [STRAPI_USERProductsSpecification]
+  brand: [STRAPI_USERProductsBrand]
+  substances: [STRAPI_USERProductsSubstances]
+  product_types: [STRAPI_USERProductsProduct_types]
+  localizations: STRAPI_USERProductsLocalizations
+}
+
+type STRAPI_USERProductsImage @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI_USERProductsImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI_USERProductsImageFormats @derivedTypes {
+  thumbnail: STRAPI_USERProductsImageFormatsThumbnail
+}
+
+type STRAPI_USERProductsImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_USERProductsAlternativeImage @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI_USERProductsAlternativeImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI_USERProductsAlternativeImageFormats @derivedTypes {
+  thumbnail: STRAPI_USERProductsAlternativeImageFormatsThumbnail
+}
+
+type STRAPI_USERProductsAlternativeImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_USERProductsGallery @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI_USERProductsGalleryFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI_USERProductsGalleryFormats @derivedTypes {
+  small: STRAPI_USERProductsGalleryFormatsSmall
+  medium: STRAPI_USERProductsGalleryFormatsMedium
+  thumbnail: STRAPI_USERProductsGalleryFormatsThumbnail
+}
+
+type STRAPI_USERProductsGalleryFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_USERProductsGalleryFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_USERProductsGalleryFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_USERProductsPros {
+  id: Int
+  text: String
+}
+
+type STRAPI_USERProductsCons {
+  id: Int
+  text: String
+}
+
+type STRAPI_USERProductsKitContent {
+  id: Int
+  text: String
+}
+
+type STRAPI_USERProductsSpecification {
+  id: Int
+  value: String
+}
+
+type STRAPI_USERProductsBrand {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI_USERProductsSubstances {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI_USERProductsProduct_types {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI_USERProductsLocalizations @derivedTypes {
+  data: [STRAPI_USERProductsLocalizationsData]
+}
+
+type STRAPI_USERProductsLocalizationsData @derivedTypes {
+  id: Int
+  attributes: STRAPI_USERProductsLocalizationsDataAttributes
+}
+
+type STRAPI_USERProductsLocalizationsDataAttributes {
+  name: String
+  description: String
+  rating: Float
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  link: String
+  model: String
+  editorsChoice: Boolean
+  couponCode: String
+  couponText: String
+  price: Float
+  affiliateMenuEditor: String
+  affiliateLevel2Editor: String
+  affiliateTop3: String
+  substances_select: String
+  product_types_select: String
+  slug: String
+  isLocked: Boolean
+  affiliateLink: String
+  locale: String
+}
+
 type STRAPI__COMPONENT_SHARED_SEO implements Node @dontInfer {
   metaTitle: String
   metaDescription: String
   keywords: String
   canonicalURL: String
   strapi_id: Int
+  metaImage: STRAPI__MEDIA @link(by: "id", from: "metaImage___NODE")
+  metaSocial: [STRAPI__COMPONENT_SHARED_META_SOCIAL] @link(by: "id", from: "metaSocial___NODE")
 }
 
-type STRAPI__COMPONENT_REUSABLE_SPONSORSHIP_BAR implements Node @dontInfer {
-  strapi_component: String
-  link: String
+type STRAPI__COMPONENT_SHARED_META_SOCIAL implements Node @dontInfer {
+  socialNetwork: String
+  title: String
   description: String
-  sponsor: String
-  label: String
   image: STRAPI__MEDIA @link(by: "id", from: "image___NODE")
   strapi_id: Int
 }
 
-type STRAPI__COMPONENT_REUSABLE_LIST_ITEM implements Node @dontInfer {
+union STRAPI__COMPONENT_CONTENT_CK_EDITORSTRAPI__COMPONENT_CONTENT_GALLERYSTRAPI__COMPONENT_CONTENT_HIGHLIGHTSTRAPI__COMPONENT_CONTENT_IMAGESTRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETSTRAPI__COMPONENT_CONTENT_PROS_CONSUnion = STRAPI__COMPONENT_CONTENT_CK_EDITOR | STRAPI__COMPONENT_CONTENT_GALLERY | STRAPI__COMPONENT_CONTENT_HIGHLIGHT | STRAPI__COMPONENT_CONTENT_IMAGE | STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGET | STRAPI__COMPONENT_CONTENT_PROS_CONS
+
+type STRAPI__COMPONENT_SHARED_HEADER_BAR implements Node @dontInfer {
   text: String
+  hasIcon: Boolean
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_REUSABLE_TWO_COLUMNS_CONTENT_RIGHTCONTENTDESCRIPTION_TEXTNODE implements Node @dontInfer {
+  rightcontentdescription: String
+}
+
+type STRAPI__COMPONENT_REUSABLE_TWO_COLUMNS_CONTENT_LEFTCONTENTDESCRIPTION_TEXTNODE implements Node @dontInfer {
+  leftcontentdescription: String
+}
+
+type STRAPI__COMPONENT_REUSABLE_TWO_COLUMNS_CONTENT implements Node @derivedTypes @dontInfer {
+  leftcontentheading: String
+  rightcontentheading: String
+  leftcontentdescription: STRAPI__COMPONENT_REUSABLE_TWO_COLUMNS_CONTENTLeftcontentdescription
+  rightcontentdescription: STRAPI__COMPONENT_REUSABLE_TWO_COLUMNS_CONTENTRightcontentdescription
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_REUSABLE_TWO_COLUMNS_CONTENTLeftcontentdescription {
+  data: STRAPI__COMPONENT_REUSABLE_TWO_COLUMNS_CONTENT_LEFTCONTENTDESCRIPTION_TEXTNODE @link(by: "id", from: "data___NODE")
+}
+
+type STRAPI__COMPONENT_REUSABLE_TWO_COLUMNS_CONTENTRightcontentdescription {
+  data: STRAPI__COMPONENT_REUSABLE_TWO_COLUMNS_CONTENT_RIGHTCONTENTDESCRIPTION_TEXTNODE @link(by: "id", from: "data___NODE")
+}
+
+type STRAPI__COMPONENT_REUSABLE_TIMELINE implements Node @dontInfer {
+  date: String
+  description: String
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_REUSABLE_OUTRO_STATISTICS implements Node @dontInfer {
+  number: String
+  content: String
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_REUSABLE_NAV implements Node @dontInfer {
+  label: String
+  link: String
   strapi_id: Int
 }
 
@@ -411,6 +1154,3823 @@ type STRAPI__COMPONENT_REUSABLE_HEADER_TEXTAREA implements Node @derivedTypes @d
 
 type STRAPI__COMPONENT_REUSABLE_HEADER_TEXTAREAContent {
   data: STRAPI__COMPONENT_REUSABLE_HEADER_TEXTAREA_CONTENT_TEXTNODE @link(by: "id", from: "data___NODE")
+}
+
+type STRAPI__COMPONENT_REUSABLE_CARDS_CONTENT_TEXTNODE implements Node @dontInfer {
+  content: String
+}
+
+type STRAPI__COMPONENT_REUSABLE_CARDS implements Node @derivedTypes @dontInfer {
+  title: String
+  content: STRAPI__COMPONENT_REUSABLE_CARDSContent
+  image: STRAPI__MEDIA @link(by: "id", from: "image___NODE")
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_REUSABLE_CARDSContent {
+  data: STRAPI__COMPONENT_REUSABLE_CARDS_CONTENT_TEXTNODE @link(by: "id", from: "data___NODE")
+}
+
+type STRAPI__COMPONENT_REUSABLE_BUTTON implements Node @dontInfer {
+  label: String
+  link: String
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_REUSABLE_AUTHOR_GROUP implements Node @dontInfer {
+  groupName: String
+  authors: [STRAPI_USER] @link(by: "id", from: "authors___NODE")
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_SPONSORED_BRANDS_SLIDE implements Node @dontInfer {
+  link: String
+  isNofollow: Boolean
+  image: STRAPI__MEDIA @link(by: "id", from: "image___NODE")
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_SPONSORED_BRANDS implements Node @dontInfer {
+  strapi_component: String
+  title: String
+  slide: [STRAPI__COMPONENT_HOMEPAGE_SPONSORED_BRANDS_SLIDE] @link(by: "id", from: "slide___NODE")
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWS implements Node @derivedTypes @dontInfer {
+  strapi_component: String
+  header: String
+  isWhite: Boolean
+  reviews: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviews]
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviews @derivedTypes {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  publishedAt: Date @dateformat
+  slug: String
+  excerpt: String
+  readtime: Int
+  isArchive: Boolean
+  publishAt: Date @dateformat
+  locale: String
+  image: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsImage
+  content: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContent]
+  authors: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthors]
+  buyNowProducts: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProducts]
+  seo: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsSeo
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsImage @derivedTypes {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsImageFormats @derivedTypes {
+  large: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsImageFormatsLarge
+  small: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsImageFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsImageFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsImageFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsImageFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsImageFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContent @derivedTypes {
+  _xcomponent: String @proxy(from: "__component")
+  id: Int
+  product: Date @dateformat
+  showDetails: Boolean
+  textarea: String
+  cmsLabel: String
+  headerTextarea: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentHeaderTextarea]
+  image: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentImage
+  header: String
+  type: String
+  content: String
+  pros: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentPros]
+  cons: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentCons]
+  gallery: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentGallery]
+  text: String
+  link: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentHeaderTextarea {
+  id: Int
+  header: String
+  content: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentImage @derivedTypes {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentImageFormats @derivedTypes {
+  large: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentImageFormatsLarge
+  small: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentImageFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentImageFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentImageFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentImageFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentImageFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentPros {
+  id: Int
+  text: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentCons {
+  id: Int
+  text: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentGallery @derivedTypes {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentGalleryFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentGalleryFormats @derivedTypes {
+  large: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentGalleryFormatsLarge
+  small: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentGalleryFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentGalleryFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentGalleryFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentGalleryFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentGalleryFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentGalleryFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsContentGalleryFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthors @derivedTypes {
+  id: Int
+  username: String
+  email: String
+  confirmed: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  favoriteFlavours: String
+  expertiseIn: String
+  fullName: String
+  description: String
+  linkedIn: String
+  vapingSince: Date @dateformat
+  postCount: Int
+  authorPosition: String
+  role: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRole
+  avatar: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsAvatar
+  products: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProducts]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRole @derivedTypes {
+  id: Int
+  name: String
+  description: String
+  type: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  permissions: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRolePermissions]
+  users: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsers]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRolePermissions @derivedTypes {
+  id: Int
+  action: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  role: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRolePermissionsRole
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRolePermissionsRole {
+  id: Int
+  name: String
+  description: String
+  type: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsers @derivedTypes {
+  id: Int
+  username: String
+  email: String
+  provider: String
+  password: String
+  confirmed: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  favoriteFlavours: String
+  expertiseIn: String
+  fullName: String
+  description: String
+  twitter: String
+  linkedIn: String
+  vapingSince: Date @dateformat
+  postCount: Int
+  authorPosition: String
+  role: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersRole
+  avatar: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersAvatar
+  products: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersProducts]
+  createdBy: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersCreatedBy
+  updatedBy: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersUpdatedBy
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersRole {
+  id: Int
+  name: String
+  description: String
+  type: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersAvatar @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersAvatarFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersAvatarFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersAvatarFormatsThumbnail
+  small: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersAvatarFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersAvatarFormatsMedium
+  large: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersAvatarFormatsLarge
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersAvatarFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersAvatarFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersAvatarFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersAvatarFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersProducts {
+  id: Int
+  name: String
+  description: String
+  rating: Float
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  link: String
+  model: String
+  editorsChoice: Boolean
+  couponCode: String
+  couponText: String
+  price: Float
+  affiliateMenuEditor: String
+  affiliateLevel2Editor: String
+  affiliateTop3: String
+  substances_select: String
+  product_types_select: String
+  exportedId: String
+  slug: String
+  isLocked: Boolean
+  affiliateLink: String
+  locale: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersCreatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  registrationToken: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsRoleUsersUpdatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  registrationToken: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsAvatar @derivedTypes {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsAvatarFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsAvatarFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsAvatarFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsAvatarFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProducts @derivedTypes {
+  id: Int
+  name: String
+  description: String
+  rating: Float
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  link: String
+  model: String
+  editorsChoice: Boolean
+  couponCode: String
+  couponText: String
+  price: Int
+  affiliateMenuEditor: String
+  affiliateLevel2Editor: String
+  affiliateTop3: String
+  substances_select: String
+  product_types_select: String
+  exportedId: String
+  slug: String
+  isLocked: Boolean
+  affiliateLink: String
+  locale: String
+  image: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsImage
+  alternativeImage: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsAlternativeImage
+  gallery: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsGallery]
+  pros: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsPros]
+  cons: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsCons]
+  kitContent: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsKitContent]
+  specification: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsSpecification]
+  brand: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsBrand]
+  substances: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsSubstances]
+  product_types: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsProduct_types]
+  localizations: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsLocalizations]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsImage @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsImageFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsAlternativeImage @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsAlternativeImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsAlternativeImageFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsAlternativeImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsAlternativeImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsGallery @derivedTypes {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsGalleryFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsGalleryFormats @derivedTypes {
+  small: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsGalleryFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsGalleryFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsGalleryFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsGalleryFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsGalleryFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsGalleryFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsPros {
+  id: Int
+  text: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsCons {
+  id: Int
+  text: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsKitContent {
+  id: Int
+  text: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsSpecification @derivedTypes {
+  id: Int
+  value: String
+  label: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsSpecificationLabel
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsSpecificationLabel {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  locale: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsBrand @derivedTypes {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  createdBy: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsBrandCreatedBy
+  updatedBy: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsBrandUpdatedBy
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsBrandCreatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsBrandUpdatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsSubstances @derivedTypes {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  createdBy: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsSubstancesCreatedBy
+  updatedBy: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsSubstancesUpdatedBy
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsSubstancesCreatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsSubstancesUpdatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsProduct_types @derivedTypes {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  parent: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsProduct_typesParent
+  createdBy: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsProduct_typesCreatedBy
+  updatedBy: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsProduct_typesUpdatedBy
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsProduct_typesParent {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsProduct_typesCreatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsProduct_typesUpdatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsAuthorsProductsLocalizations {
+  id: Int
+  name: String
+  description: String
+  rating: Float
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  link: String
+  model: String
+  editorsChoice: Boolean
+  couponCode: String
+  couponText: String
+  price: Int
+  affiliateMenuEditor: String
+  affiliateLevel2Editor: String
+  affiliateTop3: String
+  substances_select: String
+  product_types_select: String
+  exportedId: String
+  slug: String
+  isLocked: Boolean
+  affiliateLink: String
+  locale: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProducts @derivedTypes {
+  id: Int
+  name: String
+  description: String
+  rating: Float
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  model: String
+  editorsChoice: Boolean
+  price: Float
+  substances_select: String
+  product_types_select: String
+  slug: String
+  isLocked: Boolean
+  affiliateLink: String
+  locale: String
+  image: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsImage
+  alternativeImage: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsAlternativeImage
+  gallery: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsGallery]
+  pros: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsPros]
+  cons: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsCons]
+  kitContent: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsKitContent]
+  specification: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsSpecification]
+  brand: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsBrand]
+  localizations: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsLocalizations]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsImage @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsImageFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsAlternativeImage @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsAlternativeImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsAlternativeImageFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsAlternativeImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsAlternativeImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsGallery @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsGalleryFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsGalleryFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsGalleryFormatsThumbnail
+  large: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsGalleryFormatsLarge
+  small: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsGalleryFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsGalleryFormatsMedium
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsGalleryFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsGalleryFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsGalleryFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsGalleryFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsPros {
+  id: Int
+  text: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsCons {
+  id: Int
+  text: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsKitContent {
+  id: Int
+  text: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsSpecification @derivedTypes {
+  id: Int
+  value: String
+  label: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsSpecificationLabel
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsSpecificationLabel @derivedTypes {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  locale: String
+  createdBy: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsSpecificationLabelCreatedBy
+  updatedBy: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsSpecificationLabelUpdatedBy
+  localizations: [STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsSpecificationLabelLocalizations]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsSpecificationLabelCreatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  registrationToken: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsSpecificationLabelUpdatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  registrationToken: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsSpecificationLabelLocalizations {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  locale: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsBrand {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsBuyNowProductsLocalizations {
+  id: Int
+  name: String
+  description: String
+  rating: Float
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  model: String
+  editorsChoice: Boolean
+  price: Float
+  substances_select: String
+  product_types_select: String
+  slug: String
+  isLocked: Boolean
+  affiliateLink: String
+  locale: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsSeo @derivedTypes {
+  id: Int
+  metaTitle: String
+  metaDescription: String
+  keywords: String
+  canonicalURL: String
+  metaImage: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsSeoMetaImage
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsSeoMetaImage @derivedTypes {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsSeoMetaImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsSeoMetaImageFormats @derivedTypes {
+  large: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsSeoMetaImageFormatsLarge
+  small: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsSeoMetaImageFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsSeoMetaImageFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsSeoMetaImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsSeoMetaImageFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsSeoMetaImageFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsSeoMetaImageFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_REVIEWSReviewsSeoMetaImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWS implements Node @derivedTypes @dontInfer {
+  strapi_component: String
+  header: String
+  isWhite: Boolean
+  news: [STRAPI__COMPONENT_HOMEPAGE_NEWSNews]
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNews @derivedTypes {
+  id: Int
+  slug: String
+  title: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  publishedAt: Date @dateformat
+  substances_select: String
+  news_categories_select: String
+  excerpt: String
+  readtime: Int
+  isArchive: Boolean
+  publishAt: Date @dateformat
+  locale: String
+  image: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsImage
+  content: [STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContent]
+  authors: [STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthors]
+  news_categories: [STRAPI__COMPONENT_HOMEPAGE_NEWSNewsNews_categories]
+  seo: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsSeo
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsImage @derivedTypes {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsImageFormats @derivedTypes {
+  large: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsImageFormatsLarge
+  small: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsImageFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsImageFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsImageFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsImageFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsImageFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContent @derivedTypes {
+  _xcomponent: String @proxy(from: "__component")
+  id: Int
+  textarea: String
+  cmsLabel: String
+  quote: String
+  signature: String
+  link: String
+  header: String
+  type: String
+  content: String
+  image: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentImage
+  gallery: [STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentGallery]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentImage @derivedTypes {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentImageFormats @derivedTypes {
+  large: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentImageFormatsLarge
+  small: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentImageFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentImageFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentImageFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentImageFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentImageFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Int
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentGallery @derivedTypes {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentGalleryFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentGalleryFormats @derivedTypes {
+  large: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentGalleryFormatsLarge
+  small: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentGalleryFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentGalleryFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentGalleryFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentGalleryFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentGalleryFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentGalleryFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsContentGalleryFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthors @derivedTypes {
+  id: Int
+  username: String
+  email: String
+  password: String
+  confirmed: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  favoriteFlavours: String
+  expertiseIn: String
+  fullName: String
+  description: String
+  twitter: String
+  linkedIn: String
+  vapingSince: Date @dateformat
+  postCount: Int
+  authorPosition: String
+  role: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRole
+  avatar: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsAvatar
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRole @derivedTypes {
+  id: Int
+  name: String
+  description: String
+  type: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  permissions: [STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRolePermissions]
+  users: [STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsers]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRolePermissions @derivedTypes {
+  id: Int
+  action: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  role: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRolePermissionsRole
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRolePermissionsRole {
+  id: Int
+  name: String
+  description: String
+  type: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsers @derivedTypes {
+  id: Int
+  username: String
+  email: String
+  provider: String
+  password: String
+  confirmed: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  favoriteFlavours: String
+  expertiseIn: String
+  fullName: String
+  description: String
+  twitter: String
+  linkedIn: String
+  vapingSince: Date @dateformat
+  postCount: Int
+  authorPosition: String
+  role: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersRole
+  avatar: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersAvatar
+  products: [STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersProducts]
+  createdBy: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersCreatedBy
+  updatedBy: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersUpdatedBy
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersRole {
+  id: Int
+  name: String
+  description: String
+  type: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersAvatar @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersAvatarFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersAvatarFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersAvatarFormatsThumbnail
+  small: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersAvatarFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersAvatarFormatsMedium
+  large: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersAvatarFormatsLarge
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersAvatarFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersAvatarFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersAvatarFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersAvatarFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersProducts {
+  id: Int
+  name: String
+  description: String
+  rating: Float
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  link: String
+  model: String
+  editorsChoice: Boolean
+  couponCode: String
+  couponText: String
+  price: Float
+  affiliateMenuEditor: String
+  affiliateLevel2Editor: String
+  affiliateTop3: String
+  substances_select: String
+  product_types_select: String
+  exportedId: String
+  slug: String
+  isLocked: Boolean
+  affiliateLink: String
+  locale: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersCreatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  registrationToken: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsRoleUsersUpdatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  registrationToken: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsAvatar @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsAvatarFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsAvatarFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsAvatarFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsAuthorsAvatarFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsNews_categories @derivedTypes {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  parent: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsNews_categoriesParent
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsNews_categoriesParent {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsSeo @derivedTypes {
+  id: Int
+  metaTitle: String
+  metaDescription: String
+  keywords: String
+  canonicalURL: String
+  metaImage: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsSeoMetaImage
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsSeoMetaImage @derivedTypes {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsSeoMetaImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsSeoMetaImageFormats @derivedTypes {
+  large: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsSeoMetaImageFormatsLarge
+  small: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsSeoMetaImageFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsSeoMetaImageFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_NEWSNewsSeoMetaImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsSeoMetaImageFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsSeoMetaImageFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsSeoMetaImageFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_NEWSNewsSeoMetaImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNS implements Node @derivedTypes @dontInfer {
+  strapi_component: String
+  header: String
+  isWhite: Boolean
+  learns: [STRAPI__COMPONENT_HOMEPAGE_LEARNSLearns]
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearns @derivedTypes {
+  id: Int
+  slug: String
+  title: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  publishedAt: Date @dateformat
+  substances_select: String
+  learn_categories_select: String
+  excerpt: String
+  readtime: Int
+  isArchive: Boolean
+  publishAt: Date @dateformat
+  locale: String
+  image: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsImage
+  content: [STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsContent]
+  authors: [STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthors]
+  learn_categories: [STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsLearn_categories]
+  seo: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsSeo
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsImage @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsImageFormats @derivedTypes {
+  small: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsImageFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsImageFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsImageFormatsThumbnail
+  large: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsImageFormatsLarge
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsImageFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsImageFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsImageFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsContent @derivedTypes {
+  _xcomponent: String @proxy(from: "__component")
+  id: Int
+  textarea: String
+  cmsLabel: String
+  image: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsContentImage
+  text: String
+  link: String
+  type: String
+  couponCode: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsContentImage @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsContentImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsContentImageFormats @derivedTypes {
+  large: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsContentImageFormatsLarge
+  small: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsContentImageFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsContentImageFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsContentImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsContentImageFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsContentImageFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsContentImageFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsContentImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthors @derivedTypes {
+  id: Int
+  username: String
+  email: String
+  confirmed: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  favoriteFlavours: String
+  expertiseIn: String
+  fullName: String
+  description: String
+  twitter: String
+  linkedIn: String
+  vapingSince: Date @dateformat
+  postCount: Int
+  authorPosition: String
+  role: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRole
+  avatar: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsAvatar
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRole @derivedTypes {
+  id: Int
+  name: String
+  description: String
+  type: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  permissions: [STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRolePermissions]
+  users: [STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsers]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRolePermissions @derivedTypes {
+  id: Int
+  action: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  role: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRolePermissionsRole
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRolePermissionsRole {
+  id: Int
+  name: String
+  description: String
+  type: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsers @derivedTypes {
+  id: Int
+  username: String
+  email: String
+  provider: String
+  password: String
+  confirmed: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  favoriteFlavours: String
+  expertiseIn: String
+  fullName: String
+  description: String
+  twitter: String
+  linkedIn: String
+  vapingSince: Date @dateformat
+  postCount: Int
+  authorPosition: String
+  role: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersRole
+  avatar: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersAvatar
+  products: [STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersProducts]
+  createdBy: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersCreatedBy
+  updatedBy: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersUpdatedBy
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersRole {
+  id: Int
+  name: String
+  description: String
+  type: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersAvatar @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersAvatarFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersAvatarFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersAvatarFormatsThumbnail
+  small: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersAvatarFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersAvatarFormatsMedium
+  large: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersAvatarFormatsLarge
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersAvatarFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersAvatarFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersAvatarFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersAvatarFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersProducts {
+  id: Int
+  name: String
+  description: String
+  rating: Float
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  link: String
+  model: String
+  editorsChoice: Boolean
+  couponCode: String
+  couponText: String
+  price: Float
+  affiliateMenuEditor: String
+  affiliateLevel2Editor: String
+  affiliateTop3: String
+  substances_select: String
+  product_types_select: String
+  exportedId: String
+  slug: String
+  isLocked: Boolean
+  affiliateLink: String
+  locale: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersCreatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  registrationToken: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsRoleUsersUpdatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  registrationToken: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsAvatar @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsAvatarFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsAvatarFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsAvatarFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsAuthorsAvatarFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsLearn_categories {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsSeo @derivedTypes {
+  id: Int
+  metaTitle: String
+  metaDescription: String
+  keywords: String
+  canonicalURL: String
+  metaImage: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsSeoMetaImage
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsSeoMetaImage @derivedTypes {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsSeoMetaImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsSeoMetaImageFormats @derivedTypes {
+  large: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsSeoMetaImageFormatsLarge
+  small: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsSeoMetaImageFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsSeoMetaImageFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsSeoMetaImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsSeoMetaImageFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsSeoMetaImageFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsSeoMetaImageFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_LEARNSLearnsSeoMetaImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFS implements Node @derivedTypes @dontInfer {
+  strapi_component: String
+  header: String
+  isWhite: Boolean
+  best_ofs_per_category: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_category]
+  best_of_categories: [STRAPI_BEST_OF_CATEGORY] @link(by: "id", from: "best_of_categories___NODE")
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_category @derivedTypes {
+  category: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategory
+  bestOfs: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfs]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategory @derivedTypes {
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  slug: String
+  introText: String
+  subTitle: String
+  introTitle: String
+  hideFromBestOfPage: Boolean
+  isLocked: Boolean
+  locale: String
+  editorProduct: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProduct
+  image: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryImage
+  introImage: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryIntroImage
+  seo: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategorySeo
+  best_ofs: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofs
+  localizations: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryLocalizations
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProduct @derivedTypes {
+  data: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductData
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductData @derivedTypes {
+  id: Int
+  attributes: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributes
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributes @derivedTypes {
+  name: String
+  description: String
+  rating: Float
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  link: String
+  model: String
+  editorsChoice: Boolean
+  couponCode: String
+  couponText: String
+  price: Int
+  affiliateMenuEditor: String
+  affiliateLevel2Editor: String
+  affiliateTop3: String
+  substances_select: String
+  product_types_select: String
+  slug: String
+  isLocked: Boolean
+  affiliateLink: String
+  locale: String
+  image: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesImage
+  alternativeImage: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesAlternativeImage
+  gallery: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesGallery
+  kitContent: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesKitContent]
+  specification: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesSpecification]
+  brand: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesBrand
+  substances: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesSubstances
+  product_types: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesProduct_types
+  localizations: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesLocalizations
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesImage @derivedTypes {
+  data: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesImageData
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesImageData @derivedTypes {
+  id: Int
+  attributes: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesImageDataAttributes
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesImageDataAttributes @derivedTypes {
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesImageDataAttributesFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesImageDataAttributesFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesImageDataAttributesFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesImageDataAttributesFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesAlternativeImage @derivedTypes {
+  data: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesAlternativeImageData
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesAlternativeImageData @derivedTypes {
+  id: Int
+  attributes: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesAlternativeImageDataAttributes
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesAlternativeImageDataAttributes @derivedTypes {
+  name: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesAlternativeImageDataAttributesFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesAlternativeImageDataAttributesFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesAlternativeImageDataAttributesFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesAlternativeImageDataAttributesFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesGallery @derivedTypes {
+  data: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesGalleryData]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesGalleryData @derivedTypes {
+  id: Int
+  attributes: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesGalleryDataAttributes
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesGalleryDataAttributes @derivedTypes {
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesGalleryDataAttributesFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesGalleryDataAttributesFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesGalleryDataAttributesFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesGalleryDataAttributesFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesKitContent {
+  id: Int
+  text: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesSpecification {
+  id: Int
+  value: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesBrand @derivedTypes {
+  data: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesBrandData]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesBrandData @derivedTypes {
+  id: Int
+  attributes: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesBrandDataAttributes
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesBrandDataAttributes {
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesSubstances @derivedTypes {
+  data: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesSubstancesData]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesSubstancesData @derivedTypes {
+  id: Int
+  attributes: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesSubstancesDataAttributes
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesSubstancesDataAttributes {
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesProduct_types @derivedTypes {
+  data: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesProduct_typesData]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesProduct_typesData @derivedTypes {
+  id: Int
+  attributes: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesProduct_typesDataAttributes
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesProduct_typesDataAttributes {
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesLocalizations @derivedTypes {
+  data: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesLocalizationsData]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesLocalizationsData @derivedTypes {
+  id: Int
+  attributes: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesLocalizationsDataAttributes
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryEditorProductDataAttributesLocalizationsDataAttributes {
+  name: String
+  description: String
+  rating: Float
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  link: String
+  model: String
+  editorsChoice: Boolean
+  couponCode: String
+  couponText: String
+  price: Int
+  affiliateMenuEditor: String
+  affiliateLevel2Editor: String
+  affiliateTop3: String
+  substances_select: String
+  product_types_select: String
+  slug: String
+  isLocked: Boolean
+  affiliateLink: String
+  locale: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryImage @derivedTypes {
+  data: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryImageData
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryImageData @derivedTypes {
+  id: Int
+  attributes: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryImageDataAttributes
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryImageDataAttributes @derivedTypes {
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryImageDataAttributesFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryImageDataAttributesFormats @derivedTypes {
+  small: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryImageDataAttributesFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryImageDataAttributesFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryImageDataAttributesFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryImageDataAttributesFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryImageDataAttributesFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryImageDataAttributesFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryIntroImage @derivedTypes {
+  data: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryIntroImageData
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryIntroImageData @derivedTypes {
+  id: Int
+  attributes: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryIntroImageDataAttributes
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryIntroImageDataAttributes {
+  name: String
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategorySeo @derivedTypes {
+  id: Int
+  metaTitle: String
+  metaDescription: String
+  keywords: String
+  canonicalURL: String
+  metaImage: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategorySeoMetaImage
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategorySeoMetaImage @derivedTypes {
+  data: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategorySeoMetaImageData
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategorySeoMetaImageData @derivedTypes {
+  id: Int
+  attributes: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategorySeoMetaImageDataAttributes
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategorySeoMetaImageDataAttributes @derivedTypes {
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategorySeoMetaImageDataAttributesFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategorySeoMetaImageDataAttributesFormats @derivedTypes {
+  small: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategorySeoMetaImageDataAttributesFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategorySeoMetaImageDataAttributesFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategorySeoMetaImageDataAttributesFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategorySeoMetaImageDataAttributesFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategorySeoMetaImageDataAttributesFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategorySeoMetaImageDataAttributesFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofs @derivedTypes {
+  data: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsData]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsData @derivedTypes {
+  id: Int
+  attributes: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributes
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributes @derivedTypes {
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  publishedAt: Date @dateformat
+  subtitle: String
+  slug: String
+  excerpt: String
+  readtime: Int
+  isArchive: Boolean
+  publishAt: Date @dateformat
+  locale: String
+  best_of_category: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesBest_of_category
+  content: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesContent]
+  authors: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesAuthors
+  seo: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesSeo
+  image: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesImage
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesBest_of_category @derivedTypes {
+  data: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesBest_of_categoryData]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesBest_of_categoryData @derivedTypes {
+  id: Int
+  attributes: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesBest_of_categoryDataAttributes
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesBest_of_categoryDataAttributes {
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  slug: String
+  introText: String
+  subTitle: String
+  introTitle: String
+  hideFromBestOfPage: Boolean
+  isLocked: Boolean
+  locale: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesContent {
+  id: Int
+  _xcomponent: String @proxy(from: "__component")
+  textarea: String
+  cmsLabel: String
+  product: Date @dateformat
+  showDetails: Boolean
+  affiliateSlug: String
+  overrideRating: Float
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesAuthors @derivedTypes {
+  data: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesAuthorsData]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesAuthorsData @derivedTypes {
+  id: Int
+  attributes: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesAuthorsDataAttributes
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesAuthorsDataAttributes {
+  username: String
+  email: String
+  confirmed: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  fullName: String
+  description: String
+  twitter: String
+  linkedIn: String
+  postCount: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesSeo {
+  id: Int
+  metaTitle: String
+  metaDescription: String
+  keywords: String
+  canonicalURL: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesImage @derivedTypes {
+  data: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesImageData
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesImageData @derivedTypes {
+  id: Int
+  attributes: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesImageDataAttributes
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesImageDataAttributes @derivedTypes {
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesImageDataAttributesFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesImageDataAttributesFormats @derivedTypes {
+  small: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesImageDataAttributesFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesImageDataAttributesFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesImageDataAttributesFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesImageDataAttributesFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesImageDataAttributesFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryBest_ofsDataAttributesImageDataAttributesFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryLocalizations @derivedTypes {
+  data: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryLocalizationsData]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryLocalizationsData @derivedTypes {
+  id: Int
+  attributes: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryLocalizationsDataAttributes
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryCategoryLocalizationsDataAttributes {
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  slug: String
+  introText: String
+  subTitle: String
+  introTitle: String
+  hideFromBestOfPage: Boolean
+  isLocked: Boolean
+  locale: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfs @derivedTypes {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  publishedAt: Date @dateformat
+  subtitle: String
+  slug: String
+  excerpt: String
+  readtime: Int
+  isArchive: Boolean
+  publishAt: Date @dateformat
+  locale: String
+  best_of_category: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_category]
+  content: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsContent]
+  authors: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthors]
+  seo: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsSeo
+  image: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsImage
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_category @derivedTypes {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  slug: String
+  introText: String
+  subTitle: String
+  introTitle: String
+  hideFromBestOfPage: Boolean
+  isLocked: Boolean
+  locale: String
+  editorProduct: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProduct
+  image: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryImage
+  introImage: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryIntroImage
+  seo: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categorySeo
+  localizations: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryLocalizations]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProduct @derivedTypes {
+  id: Int
+  name: String
+  description: String
+  rating: Float
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  link: String
+  model: String
+  editorsChoice: Boolean
+  couponCode: String
+  couponText: String
+  price: Int
+  affiliateMenuEditor: String
+  affiliateLevel2Editor: String
+  affiliateTop3: String
+  substances_select: String
+  product_types_select: String
+  exportedId: String
+  slug: String
+  isLocked: Boolean
+  affiliateLink: String
+  locale: String
+  image: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductImage
+  alternativeImage: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductAlternativeImage
+  gallery: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductGallery]
+  kitContent: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductKitContent]
+  specification: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductSpecification]
+  brand: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductBrand]
+  substances: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductSubstances]
+  product_types: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductProduct_types]
+  localizations: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductLocalizations]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductImage @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductImageFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductAlternativeImage @derivedTypes {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductAlternativeImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductAlternativeImageFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductAlternativeImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductAlternativeImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductGallery @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductGalleryFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductGalleryFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductGalleryFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductGalleryFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductKitContent {
+  id: Int
+  text: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductSpecification @derivedTypes {
+  id: Int
+  value: String
+  label: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductSpecificationLabel
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductSpecificationLabel {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  locale: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductBrand @derivedTypes {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  createdBy: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductBrandCreatedBy
+  updatedBy: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductBrandUpdatedBy
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductBrandCreatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductBrandUpdatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductSubstances @derivedTypes {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  parent: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductSubstancesParent
+  createdBy: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductSubstancesCreatedBy
+  updatedBy: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductSubstancesUpdatedBy
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductSubstancesParent {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductSubstancesCreatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductSubstancesUpdatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductProduct_types @derivedTypes {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  parent: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductProduct_typesParent
+  createdBy: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductProduct_typesCreatedBy
+  updatedBy: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductProduct_typesUpdatedBy
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductProduct_typesParent {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductProduct_typesCreatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductProduct_typesUpdatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryEditorProductLocalizations {
+  id: Int
+  name: String
+  description: String
+  rating: Float
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  link: String
+  model: String
+  editorsChoice: Boolean
+  couponCode: String
+  couponText: String
+  price: Int
+  affiliateMenuEditor: String
+  affiliateLevel2Editor: String
+  affiliateTop3: String
+  substances_select: String
+  product_types_select: String
+  exportedId: String
+  slug: String
+  isLocked: Boolean
+  affiliateLink: String
+  locale: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryImage @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryImageFormats @derivedTypes {
+  small: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryImageFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryImageFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryImageFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryImageFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryIntroImage {
+  id: Int
+  name: String
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categorySeo @derivedTypes {
+  id: Int
+  metaTitle: String
+  metaDescription: String
+  keywords: String
+  canonicalURL: String
+  metaImage: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categorySeoMetaImage
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categorySeoMetaImage @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categorySeoMetaImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categorySeoMetaImageFormats @derivedTypes {
+  small: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categorySeoMetaImageFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categorySeoMetaImageFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categorySeoMetaImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categorySeoMetaImageFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categorySeoMetaImageFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categorySeoMetaImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsBest_of_categoryLocalizations {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  slug: String
+  introText: String
+  subTitle: String
+  introTitle: String
+  hideFromBestOfPage: Boolean
+  isLocked: Boolean
+  locale: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsContent @derivedTypes {
+  _xcomponent: String @proxy(from: "__component")
+  id: Int
+  textarea: String
+  cmsLabel: String
+  product: Date @dateformat
+  showDetails: Boolean
+  affiliateSlug: String
+  overrideRating: Float
+  image: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsContentImage
+  pros: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsContentPros]
+  cons: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsContentCons]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsContentImage @derivedTypes {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsContentImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsContentImageFormats @derivedTypes {
+  small: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsContentImageFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsContentImageFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsContentImageFormatsThumbnail
+  large: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsContentImageFormatsLarge
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsContentImageFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsContentImageFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsContentImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsContentImageFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsContentPros {
+  id: Int
+  text: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsContentCons {
+  id: Int
+  text: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthors @derivedTypes {
+  id: Int
+  username: String
+  email: String
+  confirmed: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  fullName: String
+  description: String
+  twitter: String
+  linkedIn: String
+  postCount: Int
+  role: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRole
+  avatar: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsAvatar
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRole @derivedTypes {
+  id: Int
+  name: String
+  description: String
+  type: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  permissions: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRolePermissions]
+  users: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsers]
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRolePermissions @derivedTypes {
+  id: Int
+  action: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  role: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRolePermissionsRole
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRolePermissionsRole {
+  id: Int
+  name: String
+  description: String
+  type: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsers @derivedTypes {
+  id: Int
+  username: String
+  email: String
+  provider: String
+  password: String
+  confirmed: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  favoriteFlavours: String
+  expertiseIn: String
+  fullName: String
+  description: String
+  twitter: String
+  linkedIn: String
+  vapingSince: Date @dateformat
+  postCount: Int
+  authorPosition: String
+  role: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsersRole
+  avatar: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsersAvatar
+  createdBy: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsersCreatedBy
+  updatedBy: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsersUpdatedBy
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsersRole {
+  id: Int
+  name: String
+  description: String
+  type: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsersAvatar @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsersAvatarFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsersAvatarFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsersAvatarFormatsThumbnail
+  small: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsersAvatarFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsersAvatarFormatsMedium
+  large: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsersAvatarFormatsLarge
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsersAvatarFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsersAvatarFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsersAvatarFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsersAvatarFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsersCreatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  registrationToken: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsRoleUsersUpdatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  registrationToken: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsAuthorsAvatar {
+  id: Int
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsSeo @derivedTypes {
+  id: Int
+  metaTitle: String
+  metaDescription: String
+  keywords: String
+  canonicalURL: String
+  metaImage: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsSeoMetaImage
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsSeoMetaImage @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsSeoMetaImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsSeoMetaImageFormats @derivedTypes {
+  small: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsSeoMetaImageFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsSeoMetaImageFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsSeoMetaImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsSeoMetaImageFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsSeoMetaImageFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsSeoMetaImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsImage @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  width: Int
+  height: Int
+  formats: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsImageFormats @derivedTypes {
+  small: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsImageFormatsSmall
+  medium: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsImageFormatsMedium
+  thumbnail: STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsImageFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsImageFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HOMEPAGE_BEST_OFSBest_ofs_per_categoryBestOfsImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI__COMPONENT_HERO_REVIEW implements Node @dontInfer {
+  strapi_component: String
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_HERO_NEW implements Node @dontInfer {
+  strapi_component: String
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_HERO_LEARN implements Node @dontInfer {
+  strapi_component: String
+  strapi_id: Int
 }
 
 type STRAPI__COMPONENT_CONTENT_QUOTE implements Node @dontInfer {
@@ -433,6 +4993,7 @@ type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGET implements Node @derivedTypes @don
   product: STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProduct
   showDetails: Boolean
   affiliateSlug: String
+  overrideRating: Float
   strapi_id: Int
 }
 
@@ -489,9 +5050,20 @@ type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductImage @derivedTypes {
 }
 
 type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductImageFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductImageFormatsThumbnail
   small: STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductImageFormatsSmall
   medium: STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductImageFormatsMedium
-  thumbnail: STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
 }
 
 type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductImageFormatsSmall {
@@ -516,17 +5088,6 @@ type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductImageFormatsMedium {
   height: Int
 }
 
-type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductImageFormatsThumbnail {
-  ext: String
-  url: String
-  hash: String
-  mime: String
-  name: String
-  size: Float
-  width: Int
-  height: Int
-}
-
 type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductReview @derivedTypes {
   id: Int
   name: String
@@ -538,9 +5099,11 @@ type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductReview @derivedTypes {
   readtime: Int
   isArchive: Boolean
   publishAt: Date @dateformat
+  locale: String
   image: STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductReviewImage
   authors: [STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductReviewAuthors]
   seo: STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductReviewSeo
+  localizations: [STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductReviewLocalizations]
 }
 
 type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductReviewImage @derivedTypes {
@@ -821,6 +5384,20 @@ type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductReviewSeoMetaImageFormatsLar
   height: Int
 }
 
+type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductReviewLocalizations {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  publishedAt: Date @dateformat
+  slug: String
+  excerpt: String
+  readtime: Int
+  isArchive: Boolean
+  publishAt: Date @dateformat
+  locale: String
+}
+
 type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductAlternativeImage @derivedTypes {
   id: Int
   name: String
@@ -840,9 +5417,20 @@ type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductAlternativeImage @derivedTyp
 }
 
 type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductAlternativeImageFormats @derivedTypes {
+  thumbnail: STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductAlternativeImageFormatsThumbnail
   small: STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductAlternativeImageFormatsSmall
   medium: STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductAlternativeImageFormatsMedium
-  thumbnail: STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductAlternativeImageFormatsThumbnail
+}
+
+type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductAlternativeImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
 }
 
 type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductAlternativeImageFormatsSmall {
@@ -857,17 +5445,6 @@ type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductAlternativeImageFormatsSmall
 }
 
 type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductAlternativeImageFormatsMedium {
-  ext: String
-  url: String
-  hash: String
-  mime: String
-  name: String
-  size: Float
-  width: Int
-  height: Int
-}
-
-type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductAlternativeImageFormatsThumbnail {
   ext: String
   url: String
   hash: String
@@ -968,7 +5545,16 @@ type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductSpecification @derivedTypes 
   label: STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductSpecificationLabel
 }
 
-type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductSpecificationLabel {
+type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductSpecificationLabel @derivedTypes {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  locale: String
+  localizations: [STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductSpecificationLabelLocalizations]
+}
+
+type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductSpecificationLabelLocalizations {
   id: Int
   name: String
   createdAt: Date @dateformat
@@ -995,7 +5581,7 @@ type STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETProductLocalizations {
   editorsChoice: Boolean
   couponCode: String
   couponText: String
-  price: Int
+  price: Float
   affiliateMenuEditor: String
   affiliateLevel2Editor: String
   affiliateTop3: String
@@ -1073,121 +5659,162 @@ type STRAPI__COMPONENT_CONTENT_BUTTON implements Node @dontInfer {
   strapi_id: Int
 }
 
-type STRAPI_USER implements Node @derivedTypes @dontInfer {
-  username: String
-  email: String
-  confirmed: Boolean
-  blocked: Boolean
-  createdAt: Date @dateformat
-  updatedAt: Date @dateformat
-  favoriteFlavours: String
-  expertiseIn: String
-  fullName: String
-  description: STRAPI_USERDescription
-  twitter: String
-  linkedIn: String
-  vapingSince: Date @dateformat
-  postCount: Int
-  authorPosition: String
-  avatar: STRAPI_USERAvatar
+type STRAPI__COMPONENT_ADVERTISE_ZONES_ZONEDESCRIPTION_TEXTNODE implements Node @dontInfer {
+  zoneDescription: String
+}
+
+type STRAPI__COMPONENT_ADVERTISE_ZONES implements Node @derivedTypes @dontInfer {
+  price: String
+  pricePer: String
+  priceDescription: String
+  zoneDescription: STRAPI__COMPONENT_ADVERTISE_ZONESZoneDescription
+  zoneType: String
   strapi_id: Int
 }
 
-type STRAPI_USERDescription {
-  data: String
+type STRAPI__COMPONENT_ADVERTISE_ZONESZoneDescription {
+  data: STRAPI__COMPONENT_ADVERTISE_ZONES_ZONEDESCRIPTION_TEXTNODE @link(by: "id", from: "data___NODE")
 }
 
-type STRAPI_USERAvatar @derivedTypes {
-  id: Int
-  name: String
-  alternativeText: String
-  caption: String
-  width: Int
-  height: Int
-  formats: STRAPI_USERAvatarFormats
-  hash: String
-  ext: String
-  mime: String
-  size: Float
-  url: String
-  createdAt: Date @dateformat
-  updatedAt: Date @dateformat
+type STRAPI__COMPONENT_ADVERTISE_WHY_PAY_FOR_A_SPONSORED_REVIEW implements Node @dontInfer {
+  title: String
+  leftContent: STRAPI__COMPONENT_ADVERTISE_LEFT_CONTENT @link(by: "id", from: "leftContent___NODE")
+  rightContent: STRAPI__COMPONENT_ADVERTISE_LEFT_CONTENT @link(by: "id", from: "rightContent___NODE")
+  strapi_id: Int
 }
 
-type STRAPI_USERAvatarFormats @derivedTypes {
-  thumbnail: STRAPI_USERAvatarFormatsThumbnail
-  large: STRAPI_USERAvatarFormatsLarge
-  small: STRAPI_USERAvatarFormatsSmall
-  medium: STRAPI_USERAvatarFormatsMedium
-}
-
-type STRAPI_USERAvatarFormatsThumbnail {
-  ext: String
-  url: String
-  hash: String
-  mime: String
-  name: String
-  size: Float
-  width: Int
-  height: Int
-}
-
-type STRAPI_USERAvatarFormatsLarge {
-  ext: String
-  url: String
-  hash: String
-  mime: String
-  name: String
-  size: Float
-  width: Int
-  height: Int
-}
-
-type STRAPI_USERAvatarFormatsSmall {
-  ext: String
-  url: String
-  hash: String
-  mime: String
-  name: String
-  size: Float
-  width: Int
-  height: Int
-}
-
-type STRAPI_USERAvatarFormatsMedium {
-  ext: String
-  url: String
-  hash: String
-  mime: String
-  name: String
-  size: Float
-  width: Int
-  height: Int
-}
-
-type STRAPI_REVIEW implements Node @derivedTypes @dontInfer {
-  name: String
-  createdAt: Date @dateformat
-  updatedAt: Date @dateformat
-  publishedAt: Date @dateformat
-  slug: String
-  excerpt: String
-  readtime: Int
-  isArchive: Boolean
-  publishAt: Date @dateformat
-  whyTrust: STRAPI_REVIEWWhyTrust
-  content: [STRAPI__COMPONENT_CONTENT_BUTTONSTRAPI__COMPONENT_CONTENT_CK_EDITORSTRAPI__COMPONENT_CONTENT_COUPONSTRAPI__COMPONENT_CONTENT_DROPDOWNSTRAPI__COMPONENT_CONTENT_GALLERYSTRAPI__COMPONENT_CONTENT_HIGHLIGHTSTRAPI__COMPONENT_CONTENT_IMAGESTRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETSTRAPI__COMPONENT_CONTENT_PROS_CONSSTRAPI__COMPONENT_CONTENT_QUOTESTRAPI__COMPONENT_REUSABLE_SPONSORSHIP_BARUnion] @link(by: "id", from: "content___NODE")
-  authors: [STRAPI_USER] @link(by: "id", from: "authors___NODE")
-  seo: STRAPI__COMPONENT_SHARED_SEO @link(by: "id", from: "seo___NODE")
+type STRAPI__COMPONENT_ADVERTISE_LEFT_CONTENT implements Node @derivedTypes @dontInfer {
+  title: String
+  description: STRAPI__COMPONENT_ADVERTISE_LEFT_CONTENTDescription
   image: STRAPI__MEDIA @link(by: "id", from: "image___NODE")
-  buyNowProducts: [STRAPI_PRODUCT] @link(by: "id", from: "buyNowProducts___NODE")
   strapi_id: Int
 }
 
-type STRAPI_REVIEWWhyTrust @derivedTypes {
-  id: Int
+type STRAPI__COMPONENT_ADVERTISE_LEFT_CONTENTDescription {
+  data: STRAPI__COMPONENT_ADVERTISE_LEFT_CONTENT_DESCRIPTION_TEXTNODE @link(by: "id", from: "data___NODE")
+}
+
+type STRAPI__COMPONENT_ADVERTISE_LEFT_CONTENT_DESCRIPTION_TEXTNODE implements Node @dontInfer {
+  description: String
+}
+
+type STRAPI__COMPONENT_ADVERTISE_WHY_ADVERTISE_WITH_VAPING_COLUMNRIGHT_TEXTNODE implements Node @dontInfer {
+  columnRight: String
+}
+
+type STRAPI__COMPONENT_ADVERTISE_WHY_ADVERTISE_WITH_VAPING_COLUMNRIGHTBOTTOM_TEXTNODE implements Node @dontInfer {
+  columnRightBottom: String
+}
+
+type STRAPI__COMPONENT_ADVERTISE_WHY_ADVERTISE_WITH_VAPING_COLUMNLEFT_TEXTNODE implements Node @dontInfer {
+  columnLeft: String
+}
+
+type STRAPI__COMPONENT_ADVERTISE_WHY_ADVERTISE_WITH_VAPING implements Node @derivedTypes @dontInfer {
+  Title: String
+  columnLeft: STRAPI__COMPONENT_ADVERTISE_WHY_ADVERTISE_WITH_VAPINGColumnLeft
+  columnRight: STRAPI__COMPONENT_ADVERTISE_WHY_ADVERTISE_WITH_VAPINGColumnRight
+  columnRightBottom: STRAPI__COMPONENT_ADVERTISE_WHY_ADVERTISE_WITH_VAPINGColumnRightBottom
+  image: STRAPI__MEDIA @link(by: "id", from: "image___NODE")
+  button: STRAPI__COMPONENT_REUSABLE_BUTTON @link(by: "id", from: "button___NODE")
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_ADVERTISE_WHY_ADVERTISE_WITH_VAPINGColumnLeft {
+  data: STRAPI__COMPONENT_ADVERTISE_WHY_ADVERTISE_WITH_VAPING_COLUMNLEFT_TEXTNODE @link(by: "id", from: "data___NODE")
+}
+
+type STRAPI__COMPONENT_ADVERTISE_WHY_ADVERTISE_WITH_VAPINGColumnRight {
+  data: STRAPI__COMPONENT_ADVERTISE_WHY_ADVERTISE_WITH_VAPING_COLUMNRIGHT_TEXTNODE @link(by: "id", from: "data___NODE")
+}
+
+type STRAPI__COMPONENT_ADVERTISE_WHY_ADVERTISE_WITH_VAPINGColumnRightBottom {
+  data: STRAPI__COMPONENT_ADVERTISE_WHY_ADVERTISE_WITH_VAPING_COLUMNRIGHTBOTTOM_TEXTNODE @link(by: "id", from: "data___NODE")
+}
+
+type STRAPI__COMPONENT_ADVERTISE_SUB_FOOTER implements Node @dontInfer {
+  title: String
+  description: String
+  image: STRAPI__MEDIA @link(by: "id", from: "image___NODE")
+  button: STRAPI__COMPONENT_REUSABLE_BUTTON @link(by: "id", from: "button___NODE")
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_ADVERTISE_LEFT_CONTENT_RIGHT_IMAGE_DESCRIPTION_TEXTNODE implements Node @dontInfer {
+  description: String
+}
+
+type STRAPI__COMPONENT_ADVERTISE_LEFT_CONTENT_RIGHT_IMAGE implements Node @derivedTypes @dontInfer {
+  title: String
+  price: String
+  subTitle: String
+  deliveryTime: String
+  description: STRAPI__COMPONENT_ADVERTISE_LEFT_CONTENT_RIGHT_IMAGEDescription
+  image: STRAPI__MEDIA @link(by: "id", from: "image___NODE")
+  button: STRAPI__COMPONENT_REUSABLE_BUTTON @link(by: "id", from: "button___NODE")
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_ADVERTISE_LEFT_CONTENT_RIGHT_IMAGEDescription {
+  data: STRAPI__COMPONENT_ADVERTISE_LEFT_CONTENT_RIGHT_IMAGE_DESCRIPTION_TEXTNODE @link(by: "id", from: "data___NODE")
+}
+
+type STRAPI__COMPONENT_ADVERTISE_FAQS_DESCRIPTION_TEXTNODE implements Node @dontInfer {
+  description: String
+}
+
+type STRAPI__COMPONENT_ADVERTISE_FAQS implements Node @derivedTypes @dontInfer {
   label: String
+  description: STRAPI__COMPONENT_ADVERTISE_FAQSDescription
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_ADVERTISE_FAQSDescription {
+  data: STRAPI__COMPONENT_ADVERTISE_FAQS_DESCRIPTION_TEXTNODE @link(by: "id", from: "data___NODE")
+}
+
+type STRAPI__COMPONENT_ADVERTISE_FAQ implements Node @dontInfer {
+  title: String
+  subTitle: String
+  faqs: [STRAPI__COMPONENT_ADVERTISE_FAQS] @link(by: "id", from: "faqs___NODE")
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_ADVERTISE_BANNERS_ZONEDESCRIPTION_TEXTNODE implements Node @dontInfer {
+  zoneDescription: String
+}
+
+type STRAPI__COMPONENT_ADVERTISE_BANNERS implements Node @derivedTypes @dontInfer {
+  title: String
+  zoneName: String
+  zoneDescription: STRAPI__COMPONENT_ADVERTISE_BANNERSZoneDescription
+  image: STRAPI__MEDIA @link(by: "id", from: "image___NODE")
+  zones: [STRAPI__COMPONENT_ADVERTISE_ZONES] @link(by: "id", from: "zones___NODE")
+  strapi_id: Int
+}
+
+type STRAPI__COMPONENT_ADVERTISE_BANNERSZoneDescription {
+  data: STRAPI__COMPONENT_ADVERTISE_BANNERS_ZONEDESCRIPTION_TEXTNODE @link(by: "id", from: "data___NODE")
+}
+
+type STRAPI_WHY_TRUST_US_PAGE implements Node @dontInfer {
+  Heading: String
+  Description: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  twocolumnscontenttop: STRAPI__COMPONENT_REUSABLE_TWO_COLUMNS_CONTENT @link(by: "id", from: "twocolumnscontenttop___NODE")
+  image: STRAPI__MEDIA @link(by: "id", from: "image___NODE")
+  twocolumnscontentbottom: STRAPI__COMPONENT_REUSABLE_TWO_COLUMNS_CONTENT @link(by: "id", from: "twocolumnscontentbottom___NODE")
+  strapi_id: Int
+}
+
+type STRAPI_WHY_TRUST_US_CONTENT_TEXTNODE implements Node @dontInfer {
   content: String
+}
+
+type STRAPI_WHY_TRUST_US implements Node @derivedTypes @dontInfer {
+  label: String
+  content: STRAPI_WHY_TRUST_USContent
   link: String
   createdAt: Date @dateformat
   updatedAt: Date @dateformat
@@ -1195,16 +5822,181 @@ type STRAPI_REVIEWWhyTrust @derivedTypes {
   second_item_label: String
   productTooltip: String
   productTooltipLink: String
-  avatar: STRAPI_REVIEWWhyTrustAvatar
-  first_item_image: STRAPI_REVIEWWhyTrustFirst_item_image
-  second_item_image: STRAPI_REVIEWWhyTrustSecond_item_image
+  avatar: STRAPI__MEDIA @link(by: "id", from: "avatar___NODE")
+  first_item_image: STRAPI__MEDIA @link(by: "id", from: "first_item_image___NODE")
+  second_item_image: STRAPI__MEDIA @link(by: "id", from: "second_item_image___NODE")
+  strapi_id: Int
 }
 
-type STRAPI_REVIEWWhyTrustAvatar {
+type STRAPI_WHY_TRUST_USContent {
+  data: STRAPI_WHY_TRUST_US_CONTENT_TEXTNODE @link(by: "id", from: "data___NODE")
+}
+
+type STRAPI_TRANSLATIONS implements Node @dontInfer {
+  authorsBoxSeeMyProfileLabel: String
+  authorPageLearnSectionTitle: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  strapi_id: Int
+}
+
+type STRAPI_SPONSORSHIP_BAR implements Node @dontInfer {
+  isEnable: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  publishedAt: Date @dateformat
+  image: STRAPI__MEDIA @link(by: "id", from: "image___NODE")
+  strapi_id: Int
+}
+
+type STRAPI_SIMPLE_PAGE_CONTENT_TEXTNODE implements Node @dontInfer {
+  content: String
+}
+
+type STRAPI_SIMPLE_PAGE implements Node @derivedTypes @dontInfer {
+  slug: String
+  title: String
+  content: STRAPI_SIMPLE_PAGEContent
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  publishedAt: Date @dateformat
+  strapi_id: Int
+}
+
+type STRAPI_SIMPLE_PAGEContent @derivedTypes {
+  medias: [STRAPI_SIMPLE_PAGEContentMedias]
+  data: STRAPI_SIMPLE_PAGE_CONTENT_TEXTNODE @link(by: "id", from: "data___NODE")
+}
+
+type STRAPI_SIMPLE_PAGEContentMedias @derivedTypes {
+  alternativeText: String
+  url: String
+  src: String
+  localFile: File @link(by: "id", from: "localFile___NODE")
+  file: STRAPI_SIMPLE_PAGEContentMediasFile
+}
+
+type STRAPI_SIMPLE_PAGEContentMediasFile @derivedTypes {
   id: Int
   name: String
   width: Int
   height: Int
+  formats: STRAPI_SIMPLE_PAGEContentMediasFileFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI_SIMPLE_PAGEContentMediasFileFormats @derivedTypes {
+  large: STRAPI_SIMPLE_PAGEContentMediasFileFormatsLarge
+  small: STRAPI_SIMPLE_PAGEContentMediasFileFormatsSmall
+  medium: STRAPI_SIMPLE_PAGEContentMediasFileFormatsMedium
+  thumbnail: STRAPI_SIMPLE_PAGEContentMediasFileFormatsThumbnail
+}
+
+type STRAPI_SIMPLE_PAGEContentMediasFileFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_SIMPLE_PAGEContentMediasFileFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_SIMPLE_PAGEContentMediasFileFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_SIMPLE_PAGEContentMediasFileFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_SIDEBAR implements Node @dontInfer {
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  sidebar: [STRAPI__COMPONENT_SIDEBAR_BEST_LINKSSTRAPI__COMPONENT_SIDEBAR_LEARN_LINKSUnion] @link(by: "id", from: "sidebar___NODE")
+  strapi_id: Int
+}
+
+union STRAPI__COMPONENT_SIDEBAR_BEST_LINKSSTRAPI__COMPONENT_SIDEBAR_LEARN_LINKSUnion = STRAPI__COMPONENT_SIDEBAR_BEST_LINKS | STRAPI__COMPONENT_SIDEBAR_LEARN_LINKS
+
+type STRAPI_REVIEW_ARCHIVE implements Node @dontInfer {
+  title: String
+  description: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  seo: STRAPI__COMPONENT_SHARED_SEO @link(by: "id", from: "seo___NODE")
+  strapi_id: Int
+}
+
+type STRAPI_NOT_FOUND implements Node @derivedTypes @dontInfer {
+  header: String
+  subHeader: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  news: [STRAPI_NOT_FOUNDNews]
+  strapi_id: Int
+}
+
+type STRAPI_NOT_FOUNDNews @derivedTypes {
+  id: Int
+  slug: String
+  title: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  publishedAt: Date @dateformat
+  substances_select: String
+  news_categories_select: String
+  excerpt: String
+  readtime: Int
+  isArchive: Boolean
+  publishAt: Date @dateformat
+  locale: String
+  image: STRAPI_NOT_FOUNDNewsImage
+  content: [STRAPI_NOT_FOUNDNewsContent]
+  authors: [STRAPI_NOT_FOUNDNewsAuthors]
+  news_categories: [STRAPI_NOT_FOUNDNewsNews_categories]
+  seo: STRAPI_NOT_FOUNDNewsSeo
+}
+
+type STRAPI_NOT_FOUNDNewsImage @derivedTypes {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  formats: STRAPI_NOT_FOUNDNewsImageFormats
   hash: String
   ext: String
   mime: String
@@ -1216,11 +6008,78 @@ type STRAPI_REVIEWWhyTrustAvatar {
   folderPath: String
 }
 
-type STRAPI_REVIEWWhyTrustFirst_item_image {
+type STRAPI_NOT_FOUNDNewsImageFormats @derivedTypes {
+  large: STRAPI_NOT_FOUNDNewsImageFormatsLarge
+  small: STRAPI_NOT_FOUNDNewsImageFormatsSmall
+  medium: STRAPI_NOT_FOUNDNewsImageFormatsMedium
+  thumbnail: STRAPI_NOT_FOUNDNewsImageFormatsThumbnail
+}
+
+type STRAPI_NOT_FOUNDNewsImageFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsImageFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsImageFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsContent @derivedTypes {
+  _xcomponent: String @proxy(from: "__component")
+  id: Int
+  textarea: String
+  cmsLabel: String
+  quote: String
+  signature: String
+  link: String
+  header: String
+  type: String
+  content: String
+  image: STRAPI_NOT_FOUNDNewsContentImage
+  gallery: [STRAPI_NOT_FOUNDNewsContentGallery]
+}
+
+type STRAPI_NOT_FOUNDNewsContentImage @derivedTypes {
   id: Int
   name: String
   width: Int
   height: Int
+  formats: STRAPI_NOT_FOUNDNewsContentImageFormats
   hash: String
   ext: String
   mime: String
@@ -1232,11 +6091,63 @@ type STRAPI_REVIEWWhyTrustFirst_item_image {
   folderPath: String
 }
 
-type STRAPI_REVIEWWhyTrustSecond_item_image {
+type STRAPI_NOT_FOUNDNewsContentImageFormats @derivedTypes {
+  large: STRAPI_NOT_FOUNDNewsContentImageFormatsLarge
+  small: STRAPI_NOT_FOUNDNewsContentImageFormatsSmall
+  medium: STRAPI_NOT_FOUNDNewsContentImageFormatsMedium
+  thumbnail: STRAPI_NOT_FOUNDNewsContentImageFormatsThumbnail
+}
+
+type STRAPI_NOT_FOUNDNewsContentImageFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsContentImageFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsContentImageFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsContentImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Int
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsContentGallery @derivedTypes {
   id: Int
   name: String
   width: Int
   height: Int
+  formats: STRAPI_NOT_FOUNDNewsContentGalleryFormats
   hash: String
   ext: String
   mime: String
@@ -1248,9 +6159,214 @@ type STRAPI_REVIEWWhyTrustSecond_item_image {
   folderPath: String
 }
 
-union STRAPI__COMPONENT_CONTENT_BUTTONSTRAPI__COMPONENT_CONTENT_CK_EDITORSTRAPI__COMPONENT_CONTENT_COUPONSTRAPI__COMPONENT_CONTENT_DROPDOWNSTRAPI__COMPONENT_CONTENT_GALLERYSTRAPI__COMPONENT_CONTENT_HIGHLIGHTSTRAPI__COMPONENT_CONTENT_IMAGESTRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETSTRAPI__COMPONENT_CONTENT_PROS_CONSSTRAPI__COMPONENT_CONTENT_QUOTESTRAPI__COMPONENT_REUSABLE_SPONSORSHIP_BARUnion = STRAPI__COMPONENT_CONTENT_BUTTON | STRAPI__COMPONENT_CONTENT_CK_EDITOR | STRAPI__COMPONENT_CONTENT_COUPON | STRAPI__COMPONENT_CONTENT_DROPDOWN | STRAPI__COMPONENT_CONTENT_GALLERY | STRAPI__COMPONENT_CONTENT_HIGHLIGHT | STRAPI__COMPONENT_CONTENT_IMAGE | STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGET | STRAPI__COMPONENT_CONTENT_PROS_CONS | STRAPI__COMPONENT_CONTENT_QUOTE | STRAPI__COMPONENT_REUSABLE_SPONSORSHIP_BAR
+type STRAPI_NOT_FOUNDNewsContentGalleryFormats @derivedTypes {
+  large: STRAPI_NOT_FOUNDNewsContentGalleryFormatsLarge
+  small: STRAPI_NOT_FOUNDNewsContentGalleryFormatsSmall
+  medium: STRAPI_NOT_FOUNDNewsContentGalleryFormatsMedium
+  thumbnail: STRAPI_NOT_FOUNDNewsContentGalleryFormatsThumbnail
+}
 
-type STRAPI_PRODUCT implements Node @derivedTypes @dontInfer {
+type STRAPI_NOT_FOUNDNewsContentGalleryFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsContentGalleryFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsContentGalleryFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsContentGalleryFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsAuthors @derivedTypes {
+  id: Int
+  username: String
+  email: String
+  password: String
+  confirmed: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  favoriteFlavours: String
+  expertiseIn: String
+  fullName: String
+  description: String
+  twitter: String
+  linkedIn: String
+  vapingSince: Date @dateformat
+  postCount: Int
+  authorPosition: String
+  role: STRAPI_NOT_FOUNDNewsAuthorsRole
+  avatar: STRAPI_NOT_FOUNDNewsAuthorsAvatar
+}
+
+type STRAPI_NOT_FOUNDNewsAuthorsRole @derivedTypes {
+  id: Int
+  name: String
+  description: String
+  type: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  permissions: [STRAPI_NOT_FOUNDNewsAuthorsRolePermissions]
+  users: [STRAPI_NOT_FOUNDNewsAuthorsRoleUsers]
+}
+
+type STRAPI_NOT_FOUNDNewsAuthorsRolePermissions @derivedTypes {
+  id: Int
+  action: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  role: STRAPI_NOT_FOUNDNewsAuthorsRolePermissionsRole
+}
+
+type STRAPI_NOT_FOUNDNewsAuthorsRolePermissionsRole {
+  id: Int
+  name: String
+  description: String
+  type: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI_NOT_FOUNDNewsAuthorsRoleUsers @derivedTypes {
+  id: Int
+  username: String
+  email: String
+  provider: String
+  password: String
+  confirmed: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  favoriteFlavours: String
+  expertiseIn: String
+  fullName: String
+  description: String
+  twitter: String
+  linkedIn: String
+  vapingSince: Date @dateformat
+  postCount: Int
+  authorPosition: String
+  role: STRAPI_NOT_FOUNDNewsAuthorsRoleUsersRole
+  avatar: STRAPI_NOT_FOUNDNewsAuthorsRoleUsersAvatar
+  products: [STRAPI_NOT_FOUNDNewsAuthorsRoleUsersProducts]
+  createdBy: STRAPI_NOT_FOUNDNewsAuthorsRoleUsersCreatedBy
+  updatedBy: STRAPI_NOT_FOUNDNewsAuthorsRoleUsersUpdatedBy
+}
+
+type STRAPI_NOT_FOUNDNewsAuthorsRoleUsersRole {
+  id: Int
+  name: String
+  description: String
+  type: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI_NOT_FOUNDNewsAuthorsRoleUsersAvatar @derivedTypes {
+  id: Int
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: STRAPI_NOT_FOUNDNewsAuthorsRoleUsersAvatarFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI_NOT_FOUNDNewsAuthorsRoleUsersAvatarFormats @derivedTypes {
+  thumbnail: STRAPI_NOT_FOUNDNewsAuthorsRoleUsersAvatarFormatsThumbnail
+  small: STRAPI_NOT_FOUNDNewsAuthorsRoleUsersAvatarFormatsSmall
+  medium: STRAPI_NOT_FOUNDNewsAuthorsRoleUsersAvatarFormatsMedium
+  large: STRAPI_NOT_FOUNDNewsAuthorsRoleUsersAvatarFormatsLarge
+}
+
+type STRAPI_NOT_FOUNDNewsAuthorsRoleUsersAvatarFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsAuthorsRoleUsersAvatarFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsAuthorsRoleUsersAvatarFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsAuthorsRoleUsersAvatarFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsAuthorsRoleUsersProducts {
+  id: Int
   name: String
   description: String
   rating: Float
@@ -1267,48 +6383,65 @@ type STRAPI_PRODUCT implements Node @derivedTypes @dontInfer {
   affiliateTop3: String
   substances_select: String
   product_types_select: String
+  exportedId: String
   slug: String
   isLocked: Boolean
   affiliateLink: String
   locale: String
-  image: STRAPI_PRODUCTImage
-  review: STRAPI_PRODUCTReview
-  alternativeImage: STRAPI_PRODUCTAlternativeImage
-  gallery: [STRAPI_PRODUCTGallery]
-  pros: [STRAPI_PRODUCTPros]
-  cons: [STRAPI_PRODUCTCons]
-  kitContent: [STRAPI_PRODUCTKitContent]
-  specification: [STRAPI_PRODUCTSpecification]
-  brand: [STRAPI_PRODUCTBrand]
-  substances: [STRAPI_PRODUCTSubstances]
-  product_types: [STRAPI_PRODUCTProduct_types]
-  localizations: STRAPI_PRODUCTLocalizations
-  strapi_id: Int
 }
 
-type STRAPI_PRODUCTImage @derivedTypes {
+type STRAPI_NOT_FOUNDNewsAuthorsRoleUsersCreatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  registrationToken: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI_NOT_FOUNDNewsAuthorsRoleUsersUpdatedBy {
+  id: Int
+  firstname: String
+  lastname: String
+  username: String
+  email: String
+  password: String
+  registrationToken: String
+  isActive: Boolean
+  blocked: Boolean
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI_NOT_FOUNDNewsAuthorsAvatar @derivedTypes {
   id: Int
   name: String
   alternativeText: String
+  caption: String
   width: Int
   height: Int
-  formats: STRAPI_PRODUCTImageFormats
+  formats: STRAPI_NOT_FOUNDNewsAuthorsAvatarFormats
   hash: String
   ext: String
   mime: String
   size: Float
   url: String
+  provider: String
   createdAt: Date @dateformat
   updatedAt: Date @dateformat
+  folderPath: String
 }
 
-type STRAPI_PRODUCTImageFormats @derivedTypes {
-  thumbnail: STRAPI_PRODUCTImageFormatsThumbnail
-  small: STRAPI_PRODUCTImageFormatsSmall
-  medium: STRAPI_PRODUCTImageFormatsMedium
+type STRAPI_NOT_FOUNDNewsAuthorsAvatarFormats @derivedTypes {
+  thumbnail: STRAPI_NOT_FOUNDNewsAuthorsAvatarFormatsThumbnail
 }
 
-type STRAPI_PRODUCTImageFormatsThumbnail {
+type STRAPI_NOT_FOUNDNewsAuthorsAvatarFormatsThumbnail {
   ext: String
   url: String
   hash: String
@@ -1319,232 +6452,456 @@ type STRAPI_PRODUCTImageFormatsThumbnail {
   height: Int
 }
 
-type STRAPI_PRODUCTImageFormatsSmall {
-  ext: String
-  url: String
-  hash: String
-  mime: String
-  name: String
-  size: Float
-  width: Int
-  height: Int
-}
-
-type STRAPI_PRODUCTImageFormatsMedium {
-  ext: String
-  url: String
-  hash: String
-  mime: String
-  name: String
-  size: Float
-  width: Int
-  height: Int
-}
-
-type STRAPI_PRODUCTReview {
+type STRAPI_NOT_FOUNDNewsNews_categories @derivedTypes {
   id: Int
   name: String
   createdAt: Date @dateformat
   updatedAt: Date @dateformat
-  publishedAt: Date @dateformat
+  parent: STRAPI_NOT_FOUNDNewsNews_categoriesParent
+}
+
+type STRAPI_NOT_FOUNDNewsNews_categoriesParent {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI_NOT_FOUNDNewsSeo @derivedTypes {
+  id: Int
+  metaTitle: String
+  metaDescription: String
+  keywords: String
+  canonicalURL: String
+  metaImage: STRAPI_NOT_FOUNDNewsSeoMetaImage
+}
+
+type STRAPI_NOT_FOUNDNewsSeoMetaImage @derivedTypes {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  formats: STRAPI_NOT_FOUNDNewsSeoMetaImageFormats
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI_NOT_FOUNDNewsSeoMetaImageFormats @derivedTypes {
+  large: STRAPI_NOT_FOUNDNewsSeoMetaImageFormatsLarge
+  small: STRAPI_NOT_FOUNDNewsSeoMetaImageFormatsSmall
+  medium: STRAPI_NOT_FOUNDNewsSeoMetaImageFormatsMedium
+  thumbnail: STRAPI_NOT_FOUNDNewsSeoMetaImageFormatsThumbnail
+}
+
+type STRAPI_NOT_FOUNDNewsSeoMetaImageFormatsLarge {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsSeoMetaImageFormatsSmall {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsSeoMetaImageFormatsMedium {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NOT_FOUNDNewsSeoMetaImageFormatsThumbnail {
+  ext: String
+  url: String
+  hash: String
+  mime: String
+  name: String
+  size: Float
+  width: Int
+  height: Int
+}
+
+type STRAPI_NEWS_CATEGORY implements Node @derivedTypes @dontInfer {
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  strapi_parent: STRAPI_NEWS_CATEGORYStrapi_parent
+  strapi_id: Int
+}
+
+type STRAPI_NEWS_CATEGORYStrapi_parent {
+  id: Int
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+}
+
+type STRAPI_NEWS_ARCHIVE implements Node @dontInfer {
+  title: String
+  description: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  locale: String
+  seo: STRAPI__COMPONENT_SHARED_SEO @link(by: "id", from: "seo___NODE")
+  strapi_id: Int
+}
+
+type STRAPI_NEW implements Node @derivedTypes @dontInfer {
   slug: String
+  title: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  publishedAt: Date @dateformat
+  substances_select: String
+  news_categories_select: String
   excerpt: String
   readtime: Int
   isArchive: Boolean
   publishAt: Date @dateformat
-}
-
-type STRAPI_PRODUCTAlternativeImage @derivedTypes {
-  id: Int
-  name: String
-  alternativeText: String
-  width: Int
-  height: Int
-  formats: STRAPI_PRODUCTAlternativeImageFormats
-  hash: String
-  ext: String
-  mime: String
-  size: Float
-  url: String
-  createdAt: Date @dateformat
-  updatedAt: Date @dateformat
-}
-
-type STRAPI_PRODUCTAlternativeImageFormats @derivedTypes {
-  thumbnail: STRAPI_PRODUCTAlternativeImageFormatsThumbnail
-  small: STRAPI_PRODUCTAlternativeImageFormatsSmall
-  medium: STRAPI_PRODUCTAlternativeImageFormatsMedium
-}
-
-type STRAPI_PRODUCTAlternativeImageFormatsThumbnail {
-  ext: String
-  url: String
-  hash: String
-  mime: String
-  name: String
-  size: Float
-  width: Int
-  height: Int
-}
-
-type STRAPI_PRODUCTAlternativeImageFormatsSmall {
-  ext: String
-  url: String
-  hash: String
-  mime: String
-  name: String
-  size: Float
-  width: Int
-  height: Int
-}
-
-type STRAPI_PRODUCTAlternativeImageFormatsMedium {
-  ext: String
-  url: String
-  hash: String
-  mime: String
-  name: String
-  size: Float
-  width: Int
-  height: Int
-}
-
-type STRAPI_PRODUCTGallery @derivedTypes {
-  id: Int
-  name: String
-  alternativeText: String
-  width: Int
-  height: Int
-  formats: STRAPI_PRODUCTGalleryFormats
-  hash: String
-  ext: String
-  mime: String
-  size: Float
-  url: String
-  createdAt: Date @dateformat
-  updatedAt: Date @dateformat
-}
-
-type STRAPI_PRODUCTGalleryFormats @derivedTypes {
-  small: STRAPI_PRODUCTGalleryFormatsSmall
-  medium: STRAPI_PRODUCTGalleryFormatsMedium
-  thumbnail: STRAPI_PRODUCTGalleryFormatsThumbnail
-  large: STRAPI_PRODUCTGalleryFormatsLarge
-}
-
-type STRAPI_PRODUCTGalleryFormatsSmall {
-  ext: String
-  url: String
-  hash: String
-  mime: String
-  name: String
-  size: Float
-  width: Int
-  height: Int
-}
-
-type STRAPI_PRODUCTGalleryFormatsMedium {
-  ext: String
-  url: String
-  hash: String
-  mime: String
-  name: String
-  size: Float
-  width: Int
-  height: Int
-}
-
-type STRAPI_PRODUCTGalleryFormatsThumbnail {
-  ext: String
-  url: String
-  hash: String
-  mime: String
-  name: String
-  size: Float
-  width: Int
-  height: Int
-}
-
-type STRAPI_PRODUCTGalleryFormatsLarge {
-  ext: String
-  url: String
-  hash: String
-  mime: String
-  name: String
-  size: Float
-  width: Int
-  height: Int
-}
-
-type STRAPI_PRODUCTPros {
-  id: Int
-  text: String
-}
-
-type STRAPI_PRODUCTCons {
-  id: Int
-  text: String
-}
-
-type STRAPI_PRODUCTKitContent {
-  id: Int
-  text: String
-}
-
-type STRAPI_PRODUCTSpecification {
-  id: Int
-  value: String
-}
-
-type STRAPI_PRODUCTBrand {
-  id: Int
-  name: String
-  createdAt: Date @dateformat
-  updatedAt: Date @dateformat
-}
-
-type STRAPI_PRODUCTSubstances {
-  id: Int
-  name: String
-  createdAt: Date @dateformat
-  updatedAt: Date @dateformat
-}
-
-type STRAPI_PRODUCTProduct_types {
-  id: Int
-  name: String
-  createdAt: Date @dateformat
-  updatedAt: Date @dateformat
-}
-
-type STRAPI_PRODUCTLocalizations @derivedTypes {
-  data: [STRAPI_PRODUCTLocalizationsData]
-}
-
-type STRAPI_PRODUCTLocalizationsData @derivedTypes {
-  id: Int
-  attributes: STRAPI_PRODUCTLocalizationsDataAttributes
-}
-
-type STRAPI_PRODUCTLocalizationsDataAttributes {
-  name: String
-  description: String
-  rating: Float
-  createdAt: Date @dateformat
-  updatedAt: Date @dateformat
-  link: String
-  model: String
-  editorsChoice: Boolean
-  couponCode: String
-  couponText: String
-  price: Int
-  affiliateMenuEditor: String
-  affiliateLevel2Editor: String
-  affiliateTop3: String
-  substances_select: String
-  product_types_select: String
-  slug: String
-  isLocked: Boolean
-  affiliateLink: String
   locale: String
+  whyTrust: STRAPI_NEWWhyTrust
+  content: [STRAPI__COMPONENT_CONTENT_BUTTONSTRAPI__COMPONENT_CONTENT_CK_EDITORSTRAPI__COMPONENT_CONTENT_GALLERYSTRAPI__COMPONENT_CONTENT_HIGHLIGHTSTRAPI__COMPONENT_CONTENT_IMAGESTRAPI__COMPONENT_CONTENT_QUOTEUnion] @link(by: "id", from: "content___NODE")
+  authors: [STRAPI_USER] @link(by: "id", from: "authors___NODE")
+  news_categories: [STRAPI_NEWS_CATEGORY] @link(by: "id", from: "news_categories___NODE")
+  seo: STRAPI__COMPONENT_SHARED_SEO @link(by: "id", from: "seo___NODE")
+  image: STRAPI__MEDIA @link(by: "id", from: "image___NODE")
+  substances: [STRAPI_SUBSTANCE] @link(by: "id", from: "substances___NODE")
+  strapi_id: Int
+}
+
+type STRAPI_NEWWhyTrust @derivedTypes {
+  id: Int
+  label: String
+  content: String
+  link: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  first_item_label: String
+  second_item_label: String
+  productTooltip: String
+  productTooltipLink: String
+  avatar: STRAPI_NEWWhyTrustAvatar
+  first_item_image: STRAPI_NEWWhyTrustFirst_item_image
+  second_item_image: STRAPI_NEWWhyTrustSecond_item_image
+}
+
+type STRAPI_NEWWhyTrustAvatar {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI_NEWWhyTrustFirst_item_image {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI_NEWWhyTrustSecond_item_image {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+union STRAPI__COMPONENT_CONTENT_BUTTONSTRAPI__COMPONENT_CONTENT_CK_EDITORSTRAPI__COMPONENT_CONTENT_GALLERYSTRAPI__COMPONENT_CONTENT_HIGHLIGHTSTRAPI__COMPONENT_CONTENT_IMAGESTRAPI__COMPONENT_CONTENT_QUOTEUnion = STRAPI__COMPONENT_CONTENT_BUTTON | STRAPI__COMPONENT_CONTENT_CK_EDITOR | STRAPI__COMPONENT_CONTENT_GALLERY | STRAPI__COMPONENT_CONTENT_HIGHLIGHT | STRAPI__COMPONENT_CONTENT_IMAGE | STRAPI__COMPONENT_CONTENT_QUOTE
+
+type STRAPI_MEGA_MENU implements Node @dontInfer {
+  megaMenuEditorsLabel: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  editorsMenuProducts: [STRAPI_PRODUCT] @link(by: "id", from: "editorsMenuProducts___NODE")
+  headerBar: [STRAPI__COMPONENT_SHARED_HEADER_BAR] @link(by: "id", from: "headerBar___NODE")
+  strapi_id: Int
+}
+
+type STRAPI_LEARN_CATEGORY implements Node @dontInfer {
+  name: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  strapi_id: Int
+}
+
+type STRAPI_LEARN_ARCHIVE implements Node @dontInfer {
+  title: String
+  description: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  seo: STRAPI__COMPONENT_SHARED_SEO @link(by: "id", from: "seo___NODE")
+  strapi_id: Int
+}
+
+type STRAPI_LEARN implements Node @derivedTypes @dontInfer {
+  slug: String
+  title: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  publishedAt: Date @dateformat
+  substances_select: String
+  learn_categories_select: String
+  excerpt: String
+  readtime: Int
+  isArchive: Boolean
+  publishAt: Date @dateformat
+  locale: String
+  whyTrust: STRAPI_LEARNWhyTrust
+  content: [STRAPI__COMPONENT_CONTENT_BUTTONSTRAPI__COMPONENT_CONTENT_CK_EDITORSTRAPI__COMPONENT_CONTENT_COUPONSTRAPI__COMPONENT_CONTENT_GALLERYSTRAPI__COMPONENT_CONTENT_HIGHLIGHTSTRAPI__COMPONENT_CONTENT_IMAGESTRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETSTRAPI__COMPONENT_CONTENT_PROS_CONSSTRAPI__COMPONENT_CONTENT_QUOTEUnion] @link(by: "id", from: "content___NODE")
+  authors: [STRAPI_USER] @link(by: "id", from: "authors___NODE")
+  learn_categories: [STRAPI_LEARN_CATEGORY] @link(by: "id", from: "learn_categories___NODE")
+  seo: STRAPI__COMPONENT_SHARED_SEO @link(by: "id", from: "seo___NODE")
+  image: STRAPI__MEDIA @link(by: "id", from: "image___NODE")
+  substances: [STRAPI_SUBSTANCE] @link(by: "id", from: "substances___NODE")
+  strapi_id: Int
+}
+
+type STRAPI_LEARNWhyTrust @derivedTypes {
+  id: Int
+  label: String
+  content: String
+  link: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  first_item_label: String
+  second_item_label: String
+  productTooltip: String
+  productTooltipLink: String
+  avatar: STRAPI_LEARNWhyTrustAvatar
+  first_item_image: STRAPI_LEARNWhyTrustFirst_item_image
+  second_item_image: STRAPI_LEARNWhyTrustSecond_item_image
+}
+
+type STRAPI_LEARNWhyTrustAvatar {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI_LEARNWhyTrustFirst_item_image {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+type STRAPI_LEARNWhyTrustSecond_item_image {
+  id: Int
+  name: String
+  width: Int
+  height: Int
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  provider: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  folderPath: String
+}
+
+union STRAPI__COMPONENT_CONTENT_BUTTONSTRAPI__COMPONENT_CONTENT_CK_EDITORSTRAPI__COMPONENT_CONTENT_COUPONSTRAPI__COMPONENT_CONTENT_GALLERYSTRAPI__COMPONENT_CONTENT_HIGHLIGHTSTRAPI__COMPONENT_CONTENT_IMAGESTRAPI__COMPONENT_CONTENT_PRODUCT_WIDGETSTRAPI__COMPONENT_CONTENT_PROS_CONSSTRAPI__COMPONENT_CONTENT_QUOTEUnion = STRAPI__COMPONENT_CONTENT_BUTTON | STRAPI__COMPONENT_CONTENT_CK_EDITOR | STRAPI__COMPONENT_CONTENT_COUPON | STRAPI__COMPONENT_CONTENT_GALLERY | STRAPI__COMPONENT_CONTENT_HIGHLIGHT | STRAPI__COMPONENT_CONTENT_IMAGE | STRAPI__COMPONENT_CONTENT_PRODUCT_WIDGET | STRAPI__COMPONENT_CONTENT_PROS_CONS | STRAPI__COMPONENT_CONTENT_QUOTE
+
+type STRAPI_LAYOUT implements Node @dontInfer {
+  facebookLink: String
+  twitterLink: String
+  linkedInLink: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  instagramLink: String
+  flickrLink: String
+  strapi_id: Int
+}
+
+type STRAPI_HOMEPAGE implements Node @derivedTypes @dontInfer {
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  publishedAt: Date @dateformat
+  searchHeader: String
+  searchText: String
+  locale: String
+  localizations: STRAPI_HOMEPAGELocalizations
+  hero: [STRAPI__COMPONENT_HERO_LEARNSTRAPI__COMPONENT_HERO_NEWSTRAPI__COMPONENT_HERO_REVIEWUnion] @link(by: "id", from: "hero___NODE")
+  searchImage: STRAPI__MEDIA @link(by: "id", from: "searchImage___NODE")
+  content: [STRAPI__COMPONENT_HOMEPAGE_BEST_OFSSTRAPI__COMPONENT_HOMEPAGE_LEARNSSTRAPI__COMPONENT_HOMEPAGE_NEWSSTRAPI__COMPONENT_HOMEPAGE_REVIEWSSTRAPI__COMPONENT_HOMEPAGE_SPONSORED_BRANDSUnion] @link(by: "id", from: "content___NODE")
+  seo: STRAPI__COMPONENT_SHARED_SEO @link(by: "id", from: "seo___NODE")
+  strapi_id: Int
+}
+
+type STRAPI_HOMEPAGELocalizations @derivedTypes {
+  data: [STRAPI_HOMEPAGELocalizationsData]
+}
+
+type STRAPI_HOMEPAGELocalizationsData @derivedTypes {
+  id: Int
+  attributes: STRAPI_HOMEPAGELocalizationsDataAttributes
+}
+
+type STRAPI_HOMEPAGELocalizationsDataAttributes {
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  publishedAt: Date @dateformat
+  searchHeader: String
+  searchText: String
+  locale: String
+}
+
+union STRAPI__COMPONENT_HERO_LEARNSTRAPI__COMPONENT_HERO_NEWSTRAPI__COMPONENT_HERO_REVIEWUnion = STRAPI__COMPONENT_HERO_LEARN | STRAPI__COMPONENT_HERO_NEW | STRAPI__COMPONENT_HERO_REVIEW
+
+union STRAPI__COMPONENT_HOMEPAGE_BEST_OFSSTRAPI__COMPONENT_HOMEPAGE_LEARNSSTRAPI__COMPONENT_HOMEPAGE_NEWSSTRAPI__COMPONENT_HOMEPAGE_REVIEWSSTRAPI__COMPONENT_HOMEPAGE_SPONSORED_BRANDSUnion = STRAPI__COMPONENT_HOMEPAGE_BEST_OFS | STRAPI__COMPONENT_HOMEPAGE_LEARNS | STRAPI__COMPONENT_HOMEPAGE_NEWS | STRAPI__COMPONENT_HOMEPAGE_REVIEWS | STRAPI__COMPONENT_HOMEPAGE_SPONSORED_BRANDS
+
+type STRAPI_FOOTER implements Node @dontInfer {
+  footerMainNavLabel: String
+  footerSubNavLabel: String
+  footerSubNav2Label: String
+  footerSubNav3Label: String
+  footerText: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  locale: String
+  footerSubNav: [STRAPI__COMPONENT_REUSABLE_NAV] @link(by: "id", from: "footerSubNav___NODE")
+  footerMainNav: [STRAPI__COMPONENT_REUSABLE_NAV] @link(by: "id", from: "footerMainNav___NODE")
+  footerSubNav2: [STRAPI__COMPONENT_REUSABLE_NAV] @link(by: "id", from: "footerSubNav2___NODE")
+  footerSubNav3: [STRAPI__COMPONENT_REUSABLE_NAV] @link(by: "id", from: "footerSubNav3___NODE")
+  strapi_id: Int
+}
+
+type STRAPI_CONTACT implements Node @dontInfer {
+  header: String
+  subheader: String
+  content: String
+  address: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  strapi_id: Int
+}
+
+type STRAPI_BEST_OF_ARCHIVE_DESCRIPTION_TEXTNODE implements Node @dontInfer {
+  description: String
+}
+
+type STRAPI_BEST_OF_ARCHIVE implements Node @derivedTypes @dontInfer {
+  title: String
+  description: STRAPI_BEST_OF_ARCHIVEDescription
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  publishedAt: Date @dateformat
+  seo: STRAPI__COMPONENT_SHARED_SEO @link(by: "id", from: "seo___NODE")
+  strapi_id: Int
+}
+
+type STRAPI_BEST_OF_ARCHIVEDescription {
+  data: STRAPI_BEST_OF_ARCHIVE_DESCRIPTION_TEXTNODE @link(by: "id", from: "data___NODE")
+}
+
+type STRAPI_ADVERTISE implements Node @dontInfer {
+  title: String
+  description: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  whyAdvertiseWithVaping: STRAPI__COMPONENT_ADVERTISE_WHY_ADVERTISE_WITH_VAPING @link(by: "id", from: "whyAdvertiseWithVaping___NODE")
+  banners: [STRAPI__COMPONENT_ADVERTISE_BANNERS] @link(by: "id", from: "banners___NODE")
+  sponsoredContentReviews: STRAPI__COMPONENT_ADVERTISE_LEFT_CONTENT_RIGHT_IMAGE @link(by: "id", from: "sponsoredContentReviews___NODE")
+  faq: STRAPI__COMPONENT_ADVERTISE_FAQ @link(by: "id", from: "faq___NODE")
+  subFooter: STRAPI__COMPONENT_ADVERTISE_SUB_FOOTER @link(by: "id", from: "subFooter___NODE")
+  sponsoredContentPressRelease: STRAPI__COMPONENT_ADVERTISE_LEFT_CONTENT_RIGHT_IMAGE @link(by: "id", from: "sponsoredContentPressRelease___NODE")
+  whyPayForSponsoredReview: STRAPI__COMPONENT_ADVERTISE_WHY_PAY_FOR_A_SPONSORED_REVIEW @link(by: "id", from: "whyPayForSponsoredReview___NODE")
+  strapi_id: Int
+}
+
+type STRAPI_ABOUT_US_CONTENT_TEXTNODE implements Node @dontInfer {
+  content: String
+}
+
+type STRAPI_ABOUT_US implements Node @derivedTypes @dontInfer {
+  header: String
+  content: STRAPI_ABOUT_USContent
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  outroHeader: String
+  outroSubheader: String
+  outroLink: String
+  outroTitle: String
+  timelineTitle: String
+  ourTeamTitle: String
+  locale: String
+  authorGroups: [STRAPI__COMPONENT_REUSABLE_AUTHOR_GROUP] @link(by: "id", from: "authorGroups___NODE")
+  outroStatistics: [STRAPI__COMPONENT_REUSABLE_OUTRO_STATISTICS] @link(by: "id", from: "outroStatistics___NODE")
+  cards: [STRAPI__COMPONENT_REUSABLE_CARDS] @link(by: "id", from: "cards___NODE")
+  timeline: [STRAPI__COMPONENT_REUSABLE_TIMELINE] @link(by: "id", from: "timeline___NODE")
+  strapi_id: Int
+}
+
+type STRAPI_ABOUT_USContent {
+  data: STRAPI_ABOUT_US_CONTENT_TEXTNODE @link(by: "id", from: "data___NODE")
 }
